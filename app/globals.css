@@ -29,6 +29,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Red de seguridad contra el desbordamiento horizontal en móvil. `clip` (a
+   diferencia de `hidden`) no crea un contenedor de scroll, así que no rompe
+   los elementos sticky. */
+html,
+body {
+  overflow-x: clip;
+}
+
 /* Brillo de neón magenta, como el rótulo de la concha del logo. */
 .shell-neon {
   filter: drop-shadow(0 0 1.2px var(--color-brand-magenta))

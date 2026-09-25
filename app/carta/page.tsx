@@ -27,20 +27,23 @@ export default function CartaPage() {
 
       <nav
         aria-label="Categorías de la carta"
-        className="sticky top-16 z-40 -mx-4 mb-10 overflow-x-auto border-y border-brand-gold/15 bg-background/90 px-4 py-3 backdrop-blur-md sm:mx-0 sm:rounded-full sm:border sm:px-3"
+        className="sticky top-16 z-40 -mx-4 mb-10 border-y border-brand-gold/15 bg-background/90 py-3 backdrop-blur-md sm:mx-0 sm:rounded-full sm:border"
       >
-        <ul className="flex w-max gap-2">
-          {categories.map((category) => (
-            <li key={category.id}>
-              <a
-                href={`#${category.id}`}
-                className="block whitespace-nowrap rounded-full border border-brand-gold/30 px-4 py-1.5 text-sm text-foreground/80 transition-colors hover:border-brand-magenta hover:text-foreground"
-              >
-                {category.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* El degradado del borde derecho indica que la barra se desliza. */}
+        <div className="overflow-x-auto px-4 [mask-image:linear-gradient(to_right,black_85%,transparent)] sm:px-3">
+          <ul className="flex w-max gap-2 pr-10">
+            {categories.map((category) => (
+              <li key={category.id}>
+                <a
+                  href={`#${category.id}`}
+                  className="block whitespace-nowrap rounded-full border border-brand-gold/30 px-4 py-1.5 text-sm text-foreground/80 transition-colors hover:border-brand-magenta hover:text-foreground"
+                >
+                  {category.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </nav>
 
       <div className="flex flex-col gap-16">

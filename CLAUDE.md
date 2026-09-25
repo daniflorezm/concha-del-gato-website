@@ -96,6 +96,8 @@ En `data/restaurant.ts`, tomados de la ficha de Google. En Google el lunes apare
 - Cambios pequeños y verticales: un componente o una feature por sesión de trabajo, no "la web entera".
 - Antes de cambiar el planteamiento de la web (añadir secciones grandes, efectos, dependencias), plantear el plan y confirmar antes de escribir código.
 - Verificar visualmente: levantar el servidor y usar Playwright para capturas en escritorio y móvil (390px) en vez de asumir que el código "se ve bien".
+- En móvil (320, 360 y 390px) comprobar que `document.documentElement.scrollWidth` es igual al ancho de la pantalla: si algo sobresale, al pellizcar se puede alejar la página y la cabecera fija se estira. Los adornos de fondo (halos, texturas) van dentro de un contenedor con `overflow-hidden`.
+- Zonas táctiles de al menos 44px (enlaces, botones y puntos de ingredientes).
 - Al cambiar una foto con el mismo nombre, borrar `.next/cache/images` o `next/image` seguirá sirviendo la versión anterior en local.
 - Los puntos de ingredientes (`hotspots`) se colocan en % sobre la foto ya recortada: comprobarlos con una captura.
 - Commits frecuentes por unidad de trabajo (por componente o por plato añadido), no un commit gigante al final.
