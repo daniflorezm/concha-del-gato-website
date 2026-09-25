@@ -18,9 +18,9 @@ export function Hero({ dish }: HeroProps) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-brand-turquoise sm:tracking-[0.4em]"
+          className="flex items-center gap-4 text-xs uppercase tracking-[0.2em] text-brand-turquoise sm:tracking-[0.4em]"
         >
-          <span className="h-px w-10 bg-brand-turquoise" />
+          <span className="hidden h-px w-10 bg-brand-turquoise sm:block" />
           {restaurant.tagline} · {restaurant.address.city}
         </motion.p>
 
@@ -66,7 +66,7 @@ export function Hero({ dish }: HeroProps) {
           </Link>
           <a
             href="#visitanos"
-            className="text-sm uppercase tracking-[0.2em] text-brand-gold underline-offset-8 hover:text-brand-turquoise hover:underline"
+            className="inline-flex h-11 items-center text-sm uppercase tracking-[0.2em] text-brand-gold underline-offset-8 hover:text-brand-turquoise hover:underline"
           >
             Horario y dirección
           </a>

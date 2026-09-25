@@ -56,7 +56,8 @@ export function DishSpotlight({ dish, index }: DishSpotlightProps) {
             onFocus={() => setActive(i)}
             onBlur={() => setActive(null)}
             onClick={() => setActive(active === i ? null : i)}
-            className="group absolute -translate-x-1/2 -translate-y-1/2"
+            // p-2.5 amplía la zona táctil a 44px sin cambiar el tamaño del círculo.
+            className="group absolute -translate-x-1/2 -translate-y-1/2 p-2.5"
             style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
             aria-label={spot.label}
           >
@@ -74,7 +75,10 @@ export function DishSpotlight({ dish, index }: DishSpotlightProps) {
               {i + 1}
             </motion.span>
             <span
-              className={`pointer-events-none absolute left-8 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-background/85 px-3 py-1 text-xs text-foreground transition-opacity ${
+              className={`pointer-events-none absolute top-1/2 -translate-y-1/2 whitespace-nowrap ${
+                // En la mitad derecha la etiqueta se abre hacia la izquierda para no salirse de la foto.
+                spot.x > 50 ? "right-full" : "left-full"
+              } rounded-full bg-background/85 px-3 py-1 text-xs text-foreground transition-opacity ${
                 active === i ? "opacity-100" : "opacity-0"
               }`}
             >

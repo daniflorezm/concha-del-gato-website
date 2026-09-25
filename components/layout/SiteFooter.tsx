@@ -12,14 +12,14 @@ export function SiteFooter() {
         <p>
           {address.street} · {address.postalCode} {address.city}, {address.region}
         </p>
-        <p className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-          <a href={restaurant.phoneHref} className="hover:text-brand-turquoise">
+        <p className="flex flex-wrap justify-center gap-x-4">
+          <a href={restaurant.phoneHref} className="inline-flex h-11 items-center px-1 hover:text-brand-turquoise">
             {restaurant.phone}
           </a>
-          <Link href="/carta" className="hover:text-brand-turquoise">
+          <Link href="/carta" className="inline-flex h-11 items-center px-1 hover:text-brand-turquoise">
             Carta
           </Link>
-          <a href={restaurant.mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-turquoise">
+          <a href={restaurant.mapsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center px-1 hover:text-brand-turquoise">
             Cómo llegar
           </a>
         </p>

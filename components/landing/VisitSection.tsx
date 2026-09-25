@@ -39,7 +39,7 @@ export function VisitSection() {
               href={restaurant.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm uppercase tracking-[0.2em] text-brand-gold hover:text-brand-turquoise"
+              className="inline-flex h-11 items-center self-start text-sm uppercase tracking-[0.2em] text-brand-gold hover:text-brand-turquoise"
             >
               Cómo llegar →
             </a>
@@ -49,7 +49,7 @@ export function VisitSection() {
             <p className="text-xs uppercase tracking-[0.3em] text-foreground/50">Teléfono</p>
             <a
               href={restaurant.phoneHref}
-              className="font-display text-3xl text-foreground hover:text-brand-magenta"
+              className="inline-flex min-h-11 items-center self-start font-display text-3xl text-foreground hover:text-brand-magenta"
             >
               {restaurant.phone}
             </a>
