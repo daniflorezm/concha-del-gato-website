@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ShellFrame } from "@/components/brand/ShellFrame";
 import type { Dish } from "@/data/dishes";
+import { restaurant } from "@/data/restaurant";
 
 type HeroProps = {
   dish: Dish;
@@ -10,28 +12,35 @@ type HeroProps = {
 
 export function Hero({ dish }: HeroProps) {
   return (
-    <section className="relative mx-auto grid min-h-[92svh] w-full max-w-6xl items-center gap-12 px-4 pb-16 pt-28 sm:px-8 lg:grid-cols-[1.05fr_1fr]">
+    <section className="relative mx-auto grid min-h-[92svh] w-full max-w-6xl items-center gap-12 px-4 pb-16 pt-28 sm:px-8 lg:grid-cols-[1fr_1.05fr]">
       <div className="relative z-10 flex flex-col gap-8">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-4 text-xs uppercase tracking-[0.4em] text-brand-gold"
+          className="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-brand-turquoise sm:tracking-[0.4em]"
         >
-          <span className="h-px w-10 bg-brand-gold" />
-          Cocina peruana
+          <span className="h-px w-10 bg-brand-turquoise" />
+          {restaurant.tagline} · {restaurant.address.city}
         </motion.p>
 
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="font-display text-6xl leading-[0.9] text-foreground sm:text-7xl lg:text-8xl"
+          className="font-logo text-5xl leading-[1.05] text-brand-gold sm:text-6xl lg:text-7xl"
         >
-          La <span className="neon-text italic text-brand-magenta">Concha</span>
+          La concha
           <br />
-          del Gato
+          del gato
         </motion.h1>
+
+        <motion.span
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="h-[2px] w-40 origin-left bg-brand-gold"
+        />
 
         <motion.p
           initial={{ opacity: 0 }}
@@ -39,8 +48,8 @@ export function Hero({ dish }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.35 }}
           className="max-w-md text-lg leading-relaxed text-foreground/70"
         >
-          Ceviches, causas, saltados y chifa. Antes de pedir, mira cada plato
-          de cerca: lo que lleva, cómo llega a la mesa y a qué sabe.
+          Ceviches, causas, saltados, chifa y pollo a la brasa. Cocina peruana
+          de siempre en Alcorcón.
         </motion.p>
 
         <motion.div
@@ -49,26 +58,26 @@ export function Hero({ dish }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="flex flex-wrap items-center gap-6"
         >
-          <a
-            href="#platos"
+          <Link
+            href="/carta"
             className="rounded-full bg-brand-magenta px-7 py-3 text-sm font-medium uppercase tracking-[0.2em] text-foreground shadow-[0_0_30px_-6px_var(--color-brand-magenta)] transition hover:shadow-[0_0_40px_-2px_var(--color-brand-magenta)]"
           >
-            Ver platos
-          </a>
+            Ver la carta
+          </Link>
           <a
-            href="#carta"
+            href="#visitanos"
             className="text-sm uppercase tracking-[0.2em] text-brand-gold underline-offset-8 hover:text-brand-turquoise hover:underline"
           >
-            La carta
+            Horario y dirección
           </a>
         </motion.div>
       </div>
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.92, rotate: -4 }}
-        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        initial={{ opacity: 0, scale: 0.94 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative mx-auto w-full max-w-[520px]"
+        className="relative mx-auto w-full max-w-[560px]"
       >
         <ShellFrame
           src={dish.photo!.src}
@@ -76,7 +85,7 @@ export function Hero({ dish }: HeroProps) {
           priority
           objectPosition="40% 50%"
         />
-        <p className="absolute -bottom-2 right-0 font-display text-sm italic text-foreground/60">
+        <p className="mt-3 text-right font-display text-sm italic text-foreground/60">
           {dish.name}
         </p>
       </motion.div>

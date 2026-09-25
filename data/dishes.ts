@@ -46,8 +46,6 @@ export type Dish = {
   /** En euros. `null` mientras no se confirme contra la carta impresa. */
   price: number | null;
   description: string;
-  modelPath: string;
-  ingredientAnchors?: string[];
   photo?: DishPhoto;
 };
 
@@ -63,7 +61,6 @@ export const dishes: Dish[] = [
     price: null,
     description:
       "Tres clásicos en una bandeja: causa enrollada con salsa de ají amarillo, ceviche de pescado con cebolla morada y chicharrón de calamar crujiente con chifle y cancha.",
-    modelPath: "/models/trio-de-la-concha.glb",
     photo: {
       src: "/images/platos/trio-de-la-concha.webp",
       width: 1600,
@@ -86,7 +83,6 @@ export const dishes: Dish[] = [
     price: null,
     description:
       "Causa de papa amarilla con capa de palta, coronada con ceviche de pescado y bañada en leche de tigre. Con choclo, cancha y camote.",
-    modelPath: "/models/causa-acevichada.glb",
     photo: {
       src: "/images/platos/causa-acevichada.webp",
       width: 1200,
@@ -109,7 +105,6 @@ export const dishes: Dish[] = [
     price: 14.5,
     description:
       "Tiras de lomo salteadas al wok con cebolla morada, tomate y ají amarillo, en su jugo. Con papas fritas y arroz blanco.",
-    modelPath: "/models/lomo-saltado.glb",
     photo: {
       src: "/images/platos/lomo-saltado.webp",
       width: 1200,
@@ -132,7 +127,6 @@ export const dishes: Dish[] = [
     price: null,
     description:
       "Capas de papa amarilla prensada rellenas de pollo deshilachado, con palta, huevo, aceituna de botija y un trazo de crema de ají amarillo.",
-    modelPath: "/models/causa-limena.glb",
     photo: {
       src: "/images/platos/causa-limena.webp",
       width: 1200,
@@ -155,7 +149,6 @@ export const dishes: Dish[] = [
     price: null,
     description:
       "Tacu tacu dorado de arroz y frejol, cubierto con salsa cremosa de mariscos, langostinos y conchas, terminado con parmesano.",
-    modelPath: "/models/tacu-tacu-mariscos.glb",
     photo: {
       src: "/images/platos/tacu-tacu-mariscos.webp",
       width: 1200,
@@ -171,6 +164,13 @@ export const dishes: Dish[] = [
     },
   },
 ];
+
+/** Categorías que tienen al menos un plato, en el orden de la carta. */
+export function categoriesWithDishes() {
+  return (Object.keys(categoryLabels) as DishCategory[])
+    .map((id) => ({ id, label: categoryLabels[id], dishes: dishes.filter((d) => d.category === id) }))
+    .filter((group) => group.dishes.length > 0);
+}
 
 export function formatPrice(price: number | null) {
   return price === null ? null : `${price.toFixed(2).replace(".", ",")} €`;

@@ -24,7 +24,7 @@ export function DishSpotlight({ dish, index }: DishSpotlightProps) {
   return (
     <article
       id={dish.id}
-      className={`mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-8 ${
+      className={`mx-auto grid w-full max-w-6xl scroll-mt-24 items-center gap-10 px-4 sm:px-8 ${
         landscape ? "lg:grid-cols-[1.6fr_1fr]" : "lg:grid-cols-[1fr_1fr]"
       }`}
     >
