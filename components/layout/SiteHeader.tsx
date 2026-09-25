@@ -4,7 +4,7 @@ import { restaurant } from "@/data/restaurant";
 
 export function SiteHeader() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-brand-gold/15 bg-background/80 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-brand-gold/15 bg-background">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-8">
         <Link href="/" className="flex h-11 items-center gap-3">
           <Logo className="h-9 w-10" />
@@ -27,6 +27,12 @@ export function SiteHeader() {
           </a>
         </div>
       </nav>
+      {/* Degradado bajo la cabecera: el contenido se desvanece al pasar por
+          debajo en vez de cortarse en seco (p. ej. el título "Menú"). */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-full h-8 bg-gradient-to-b from-background to-transparent"
+      />
     </header>
   );
 }
