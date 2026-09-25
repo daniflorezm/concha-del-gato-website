@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Dish } from "@/data/dishes";
+import { formatPrice, type Dish } from "@/data/dishes";
 
 type DishCardProps = {
   dish: Dish;
@@ -14,9 +14,11 @@ export function DishCard({ dish }: DishCardProps) {
       <div className="aspect-square bg-black/40" />
       <div className="flex items-center justify-between gap-4 p-4">
         <h3 className="font-display text-lg text-foreground">{dish.name}</h3>
-        <span className="font-display text-brand-gold">
-          {dish.price.toFixed(2)} €
-        </span>
+        {dish.price !== null && (
+          <span className="font-display text-brand-gold">
+            {formatPrice(dish.price)}
+          </span>
+        )}
       </div>
     </Link>
   );

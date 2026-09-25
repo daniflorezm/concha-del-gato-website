@@ -17,10 +17,16 @@ Extraída del logo real del restaurante:
 - Acento secundario: dorado (`#D4AF37` aprox.) — líneas divisorias, marcos, tipografía de detalle ("MENÚ", precios).
 - Acento terciario: turquesa/azul (`#29ABE2` aprox.) — el icono de tenedor/cuchara dentro de la concha del logo. Usar con moderación, para micro-detalles o hover states.
 - Texto principal sobre fondo oscuro: blanco roto (`#F5F5F0`).
-- Tipografía: serif elegante para titulares (el logo y "MENÚ" usan una serif clásica tipo *display*), sans-serif limpia para cuerpo de texto/precios.
+- Tipografía: serif elegante para titulares (el logo y "MENÚ" usan una serif clásica tipo *display*), sans-serif limpia para cuerpo de texto/precios. Elegidas: Cormorant Garamond (`font-display`) + Geist (`font-sans`).
 - Motivo gráfico de fondo: ilustraciones lineales finas (cubiertos, verduras) en gris sobre negro — se puede reutilizar como textura decorativa sutil, sin competir con el contenido.
 
 Ajustar los tonos exactos con un selector de color sobre el PDF/logo original antes de fijarlos en el design system (`tailwind.config` o `theme.ts`), estos son de partida.
+
+Recursos visuales propios de la web (para que no parezca una plantilla):
+
+- La concha del logo como máscara de las fotos, con borde de neón magenta (`ShellFrame`).
+- "Carta anotada": fotos reales con los ingredientes numerados sobre el plato (`DishSpotlight`).
+- Índice de la carta con números romanos y línea de puntos dorada, como la carta impresa (`MenuIndex`).
 
 ## Stack técnico
 
@@ -41,12 +47,16 @@ No introducir otro framework de 3D (p. ej. Babylon.js) ni otra librería de anim
   /carta/page.tsx              → carta completa
   /carta/[slug]/page.tsx       → vista de un plato (opcional, o modal desde /carta)
 /components
+  /brand/ShellFrame.tsx        → concha del logo como máscara de foto + marco neón magenta (ShellGlyph = versión icono)
+  /brand/LineTexture.tsx       → textura de fondo de ilustraciones lineales
+  /landing/*                   → secciones de la landing (Hero, IngredientMarquee, DishSpotlight, MenuIndex)
   /three/DishViewer3D.tsx      → visor 3D reutilizable (modelo + OrbitControls + animación de ensamblaje)
   /three/IngredientAssembly.ts → lógica de timeline GSAP para animar piezas del modelo
   /ui/DishCard.tsx
   /ui/DishDescriptionPanel.tsx
 /data
   dishes.ts                    → array tipado con todos los platos (ver esquema abajo)
+/public/images/platos/*.webp  → fotos reales (verticales recortadas a 4:5 centradas en el plato, ≤1600px)
 /public/models/*.glb
 /public/textures (si aplica)
 ```
@@ -59,10 +69,14 @@ type Dish = {
   name: string;
   category: "entrantes" | "caldos" | "trios" | "a-la-carta" | "pescados-mariscos"
            | "pollo-brasa" | "chifas" | "fast-food" | "bebidas" | "cocteles" | "postres";
-  price: number;              // en euros
+  price: number | null;       // en euros; null = pendiente de confirmar con la carta impresa (no se muestra)
   description: string;        // por escribir — el PDF de la carta trae nombre y precio, no descripción de sabor/ingredientes
   modelPath: string;          // "/models/lomo-saltado.glb"
   ingredientAnchors?: string[]; // nombres de los nodos/mallas del glb que se animan por separado en el ensamblaje, si el modelo viene segmentado por ingrediente
+  photo?: {                   // foto real del plato (WebP en /public/images/platos/)
+    src: string; width: number; height: number;
+    hotspots?: { label: string; x: number; y: number }[]; // ingredientes señalados sobre la foto, en % de ancho/alto
+  };
 };
 ```
 

@@ -16,11 +16,57 @@
   --color-brand-turquoise: var(--color-brand-turquoise);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-playfair);
+  --font-display: var(--font-cormorant);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Brillo de neón magenta, como el rótulo de la concha del logo. */
+.shell-neon {
+  filter: drop-shadow(0 0 1.2px var(--color-brand-magenta))
+    drop-shadow(0 0 4px var(--color-brand-magenta));
+  animation: neon-flicker 6s infinite;
+}
+
+.neon-text {
+  text-shadow:
+    0 0 6px color-mix(in srgb, var(--color-brand-magenta) 70%, transparent),
+    0 0 28px color-mix(in srgb, var(--color-brand-magenta) 45%, transparent);
+}
+
+@keyframes neon-flicker {
+  0%, 92%, 100% { opacity: 1; }
+  93% { opacity: 0.55; }
+  94% { opacity: 1; }
+  96% { opacity: 0.7; }
+}
+
+.outline-text {
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--color-brand-gold) 70%, transparent);
+}
+
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee,
+  .shell-neon {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
