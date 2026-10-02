@@ -14,6 +14,7 @@ type DishSpotlightProps = {
 // principal más cercano (`dish.photo.hotspots`, dishes.ts), sin números encima.
 export function DishSpotlight({ dish, index }: DishSpotlightProps) {
   const [active, setActive] = useState<number | null>(null);
+  const [touched, setTouched] = useState(false);
   const photo = dish.photo;
   if (!photo) return null;
 
@@ -24,6 +25,7 @@ export function DishSpotlight({ dish, index }: DishSpotlightProps) {
   const handlePhotoClick = (e: MouseEvent<HTMLElement>) => {
     const spots = photo.hotspots;
     if (!spots?.length) return;
+    setTouched(true);
     const rect = e.currentTarget.getBoundingClientRect();
     const px = e.clientX - rect.left;
     const py = e.clientY - rect.top;
@@ -82,6 +84,7 @@ export function DishSpotlight({ dish, index }: DishSpotlightProps) {
             type="button"
             onClick={(e) => {
               e.stopPropagation();
+              setTouched(true);
               setActive(active === i ? null : i);
             }}
             onFocus={() => setActive(i)}
@@ -91,6 +94,22 @@ export function DishSpotlight({ dish, index }: DishSpotlightProps) {
             aria-label={spot.label}
           />
         ))}
+
+        {photo.hotspots?.length ? (
+          <AnimatePresence>
+            {!touched && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4, delay: 0.8 }}
+                className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-brand-gold/40 bg-background/80 px-4 py-2 text-xs uppercase tracking-[0.2em] text-brand-gold backdrop-blur-sm"
+              >
+                Toca para ver ingredientes
+              </motion.p>
+            )}
+          </AnimatePresence>
+        ) : null}
 
         <AnimatePresence>
           {activeSpot && (
@@ -144,12 +163,6 @@ export function DishSpotlight({ dish, index }: DishSpotlightProps) {
         <p className="max-w-md leading-relaxed text-foreground/70">
           {dish.description}
         </p>
-
-        {photo.hotspots && (
-          <p className="border-t border-brand-gold/25 pt-5 text-xs uppercase tracking-[0.25em] text-foreground/50">
-            Toca la foto para descubrir los ingredientes
-          </p>
-        )}
 
         {price && (
           <p className="font-display text-2xl text-brand-gold">{price}</p>
