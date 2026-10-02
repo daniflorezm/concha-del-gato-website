@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { PeruRoute } from "@/components/landing/PeruRoute";
 import { formatSlots, openingHours, restaurant } from "@/data/restaurant";
 
 const noopSubscribe = () => () => {};
@@ -24,6 +25,10 @@ export function VisitSection() {
         </p>
         <h2 className="font-logo text-4xl text-brand-gold sm:text-5xl">Visítanos</h2>
         <span className="h-px w-24 bg-brand-gold" />
+      </div>
+
+      <div className="mb-14">
+        <PeruRoute />
       </div>
 
       <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
