@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ShellFrame } from "@/components/brand/ShellFrame";
 import type { Dish } from "@/data/dishes";
 import { restaurant } from "@/data/restaurant";
 
@@ -77,17 +77,32 @@ export function Hero({ dish }: HeroProps) {
         initial={{ opacity: 0, scale: 0.94 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative mx-auto w-full max-w-[560px]"
+        className="relative mx-auto w-full max-w-[480px]"
       >
-        <ShellFrame
-          src={dish.photo!.src}
-          alt={dish.name}
-          priority
-          objectPosition="40% 50%"
-        />
-        <p className="mt-3 text-right font-display text-sm italic text-foreground/60">
-          {dish.name}
-        </p>
+        <div className="relative">
+          <div
+            aria-hidden
+            className="absolute -inset-6 -z-10 rounded-[2rem] bg-brand-magenta/10 blur-3xl"
+          />
+          <div className="relative overflow-hidden rounded-2xl ring-1 ring-brand-gold/25">
+            <Image
+              src={dish.photo!.src}
+              alt={dish.name}
+              width={dish.photo!.width}
+              height={dish.photo!.height}
+              priority
+              sizes="(min-width: 1024px) 45vw, 90vw"
+              className="h-auto w-full"
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/90 via-background/40 to-transparent"
+            />
+            <p className="absolute bottom-4 left-5 right-5 font-display text-lg italic text-foreground/90">
+              {dish.name}
+            </p>
+          </div>
+        </div>
       </motion.div>
     </section>
   );
