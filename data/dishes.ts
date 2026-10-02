@@ -25,7 +25,10 @@ export const categoryLabels: Record<DishCategory, string> = {
   postres: "Postres",
 };
 
-/** Punto sobre la foto (en % del ancho/alto) que señala un ingrediente. */
+/**
+ * Punto sobre la foto (en % del ancho/alto) que señala un componente principal.
+ * Solo los ingredientes clave: el detalle va en la descripción del plato.
+ */
 export type IngredientHotspot = {
   label: string;
   x: number;
@@ -67,12 +70,9 @@ export const dishes: Dish[] = [
       height: 901,
       hotspots: [
         { label: "Causa enrollada", x: 31, y: 34 },
-        { label: "Crema de ají amarillo", x: 22, y: 47 },
         { label: "Ceviche de pescado", x: 44, y: 47 },
         { label: "Cancha serrana", x: 33, y: 60 },
-        { label: "Camote glaseado", x: 58, y: 42 },
         { label: "Chicharrón de calamar", x: 62, y: 72 },
-        { label: "Chifle de plátano", x: 53, y: 80 },
       ],
     },
   },
@@ -88,11 +88,8 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Chifle", x: 37, y: 33 },
-        { label: "Camote frito", x: 58, y: 36 },
         { label: "Ceviche de pescado", x: 55, y: 46 },
         { label: "Causa amarilla", x: 48, y: 53 },
-        { label: "Cancha", x: 73, y: 52 },
         { label: "Choclo", x: 58, y: 60 },
         { label: "Leche de tigre", x: 33, y: 62 },
       ],
@@ -113,9 +110,6 @@ export const dishes: Dish[] = [
         { label: "Papas fritas", x: 15, y: 52 },
         { label: "Cebolla morada", x: 45, y: 48 },
         { label: "Lomo al wok", x: 40, y: 57 },
-        { label: "Ají amarillo", x: 30, y: 51 },
-        { label: "Tomate", x: 53, y: 62 },
-        { label: "Jugo del saltado", x: 30, y: 66 },
         { label: "Arroz blanco", x: 70, y: 53 },
       ],
     },
@@ -132,10 +126,7 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Camote frito", x: 45, y: 37 },
-        { label: "Chifle", x: 65, y: 43 },
         { label: "Palta", x: 37, y: 45 },
-        { label: "Aceituna de botija", x: 58, y: 49 },
         { label: "Huevo", x: 54, y: 55 },
         { label: "Pollo deshilachado", x: 37, y: 57 },
         { label: "Crema de ají amarillo", x: 80, y: 73 },
@@ -155,9 +146,7 @@ export const dishes: Dish[] = [
       height: 1500,
       hotspots: [
         { label: "Conchas", x: 30, y: 42 },
-        { label: "Arvejas", x: 56, y: 42 },
         { label: "Tacu tacu", x: 22, y: 51 },
-        { label: "Parmesano", x: 57, y: 52 },
         { label: "Langostinos", x: 38, y: 62 },
         { label: "Salsa de mariscos", x: 65, y: 62 },
       ],
