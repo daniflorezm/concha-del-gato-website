@@ -29,7 +29,7 @@ Los tokens viven en `app/globals.css` (`@theme`). El logo está vectorizado en `
 Recursos visuales propios de la web (para que no parezca una plantilla):
 
 - La concha del logo como máscara de las fotos, con su trazo magenta con brillo de neón (`ShellFrame`).
-- "Carta anotada": fotos reales con los ingredientes numerados sobre el plato (`DishSpotlight`).
+- "Carta táctil": fotos reales limpias; al tocar cualquier punto aparece el componente principal más cercano (3–4 por plato, sin números; el detalle va en la descripción) (`DishSpotlight`).
 - Índice de la carta con números romanos y línea de puntos dorada, como la carta impresa (`MenuIndex`).
 
 ## Stack técnico
@@ -103,3 +103,13 @@ En `data/restaurant.ts`, tomados de la ficha de Google. En Google el lunes apare
 - Commits frecuentes por unidad de trabajo (por componente o por plato añadido), no un commit gigante al final.
 - Mantener `dishes.ts` y `restaurant.ts` como única fuente de verdad — no hardcodear nombres, precios, horario ni teléfono en componentes.
 - Actualizar este `CLAUDE.md` si cambia el stack, la paleta definitiva, o la convención de carpetas.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
