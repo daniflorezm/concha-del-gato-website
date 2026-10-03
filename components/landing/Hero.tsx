@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { CatForkLine } from "@/components/brand/CatForkLine";
 import type { Dish } from "@/data/dishes";
 import { restaurant } from "@/data/restaurant";
 
@@ -13,6 +14,12 @@ type HeroProps = {
 export function Hero({ dish }: HeroProps) {
   return (
     <section className="relative mx-auto grid min-h-[92svh] w-full max-w-6xl items-center gap-12 px-4 pb-16 pt-28 sm:px-8 lg:grid-cols-[1fr_1.05fr]">
+      {/* Fondo: el tenedor-gato del logo a línea dorada, con un halo magenta
+          muy suave. Recortado a la sección para no ensanchar la página. */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <div className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-magenta/10 blur-[120px] lg:left-[44%]" />
+        <CatForkLine className="absolute left-1/2 top-1/2 h-[88%] -translate-x-1/2 -translate-y-1/2 opacity-[0.13] lg:left-[44%] lg:opacity-25" />
+      </div>
       <div className="relative z-10 flex flex-col gap-8">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
