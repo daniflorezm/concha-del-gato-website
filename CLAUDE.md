@@ -85,7 +85,7 @@ type Dish = {
 
 Categorías y platos tomados de `CARTA CON DESCRIPCION Y ALERGENOS.docx` (la carta vigente): Entradas, Ceviches, Los Crocantes, Arroces Criollos y Marinos, Nuestras Sopas, Dúos/Tríos/Barcos Marinos, Los Tacu Tacus, Criollos y Especiales de la Casa, Brasas y Broasters, Fast Food, Guarniciones y Bebidas y Licores (~98 entradas). El sitio es **data-driven**: se itera `dishes.ts` sobre `MenuItem` / `DishSpotlight`; las categorías sin platos no se muestran.
 
-Estado actual: carta completa con precios, descripciones y alérgenos. Solo 5 platos tienen foto real (con ingredientes tocables); el resto aún no tiene foto.
+Estado actual: carta completa con precios, descripciones y alérgenos. 22 platos tienen foto real (sesión de fotos del iPhone); solo los 5 con ingredientes tocables (`hotspots`) salen en la landing, el resto de fotos se ve en /carta.
 
 ## Datos del restaurante
 
