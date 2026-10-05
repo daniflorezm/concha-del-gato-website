@@ -28,7 +28,14 @@ export function MenuItem({ dish }: MenuItemProps) {
           <span className="mb-1 flex-1 border-b border-dotted border-brand-gold/30" />
           {price && <span className="font-display text-lg text-brand-gold">{price}</span>}
         </div>
-        <p className="text-sm leading-relaxed text-foreground/65">{dish.description}</p>
+        {dish.description && (
+          <p className="text-sm leading-relaxed text-foreground/65">{dish.description}</p>
+        )}
+        {dish.allergens && (
+          <p className="text-xs text-foreground/45">
+            Alérgenos: {dish.allergens.length ? dish.allergens.join(", ") : "ninguno"}
+          </p>
+        )}
         {dish.photo?.hotspots && (
           <Link
             href={`/#${dish.id}`}
