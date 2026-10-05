@@ -7,7 +7,7 @@ import { dishes } from "@/data/dishes";
 
 export default function Home() {
   const withPhoto = dishes.filter((dish) => dish.photo);
-  const heroDish = withPhoto.find((dish) => dish.category === "trios") ?? withPhoto[0];
+  const heroDish = withPhoto.find((dish) => dish.category === "duos-trios") ?? withPhoto[0];
   const spotlights = withPhoto.filter((dish) => dish !== heroDish).concat(heroDish ? [heroDish] : []);
 
   return (

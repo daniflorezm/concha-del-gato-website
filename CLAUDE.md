@@ -71,10 +71,11 @@ Sin 3D ni más librerías de animación: mantener el stack acotado.
 type Dish = {
   id: string;                // slug único, ej. "lomo-saltado"
   name: string;
-  category: "entrantes" | "caldos" | "trios" | "a-la-carta" | "pescados-mariscos"
-           | "pollo-brasa" | "chifas" | "fast-food" | "bebidas" | "cocteles" | "postres";
+  category: "entrantes" | "ceviches" | "crocantes" | "arroces" | "sopas" | "duos-trios"
+           | "tacu-tacus" | "criollos" | "brasas" | "fast-food" | "guarniciones" | "bebidas";
   price: number | null;       // en euros; null = pendiente de confirmar con la carta impresa (no se muestra)
-  description: string;        // por escribir — el PDF de la carta trae nombre y precio, no descripción de sabor/ingredientes
+  description: string;        // texto de la carta (vacío en guarniciones y bebidas)
+  allergens?: string[];       // "x*" = según elaboración; [] = ninguno; ausente = sin dato
   photo?: {                   // foto real del plato (WebP en /public/images/platos/)
     src: string; width: number; height: number;
     hotspots?: { label: string; x: number; y: number }[]; // ingredientes señalados sobre la foto, en % de ancho/alto
@@ -82,11 +83,9 @@ type Dish = {
 };
 ```
 
-Categorías reales tomadas de la carta del restaurante (`LA CONCHA DEL GATO.pdf`): Entrantes, Caldos, Los Tríos de la Concha, Platos a la Carta, Pescados y Mariscos, Pollo a la Brasa, Chifas, Fast Food, Bebidas Frías, Refrescos, Cervezas, Cócteles, Postres. Son ~80 platos en total — el sitio debe ser **data-driven**: no se crea un componente por plato, se itera `dishes.ts` sobre `MenuItem` / `DishSpotlight`. Las categorías sin platos no se muestran.
+Categorías y platos tomados de `CARTA CON DESCRIPCION Y ALERGENOS.docx` (la carta vigente): Entradas, Ceviches, Los Crocantes, Arroces Criollos y Marinos, Nuestras Sopas, Dúos/Tríos/Barcos Marinos, Los Tacu Tacus, Criollos y Especiales de la Casa, Brasas y Broasters, Fast Food, Guarniciones y Bebidas y Licores (~98 entradas). El sitio es **data-driven**: se itera `dishes.ts` sobre `MenuItem` / `DishSpotlight`; las categorías sin platos no se muestran.
 
-Estado actual: solo están los 5 platos con foto. Nombres y descripciones son borrador redactado a partir de las fotos (pendiente de revisar con el restaurante); precios a `null` salvo el lomo saltado.
-
-Las descripciones de cada plato (ingredientes, sabor, origen) no vienen en la carta original y hay que redactarlas — pedírmelo aparte cuando toque poblar `dishes.ts`.
+Estado actual: carta completa con precios, descripciones y alérgenos. Solo 5 platos tienen foto real (con ingredientes tocables); el resto aún no tiene foto.
 
 ## Datos del restaurante
 

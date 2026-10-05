@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { categoriesWithDishes } from "@/data/dishes";
 
-const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
 
 // Índice de la carta con el aire de la carta impresa: número romano, nombre
 // en serif y línea de puntos dorada. Solo lista categorías que ya tienen platos.

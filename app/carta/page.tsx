@@ -5,7 +5,7 @@ import { categoriesWithDishes } from "@/data/dishes";
 export const metadata: Metadata = {
   title: "Carta",
   description:
-    "Carta de La Concha del Gato, restaurante peruano en Alcorcón: entrantes, tríos, platos a la carta, pescados y mariscos.",
+    "Carta de La Concha del Gato, restaurante peruano en Alcorcón: entradas, ceviches, arroces, sopas, tacu tacus, criollos, brasas y bebidas.",
 };
 
 // Pensada sobre todo para móvil (QR en mesa): categorías fijas arriba y
@@ -63,7 +63,8 @@ export default function CartaPage() {
       </div>
 
       <p className="mt-16 text-center text-sm text-foreground/45">
-        Estamos pasando la carta completa a la web. Si no ves un plato, pregúntanos.
+        Los alérgenos marcados con * pueden variar según la elaboración. Si tienes
+        alguna alergia o intolerancia, avísanos antes de pedir.
       </p>
     </main>
   );
