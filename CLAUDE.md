@@ -30,7 +30,7 @@ Recursos visuales propios de la web (para que no parezca una plantilla):
 
 - La concha del logo como máscara de las fotos, con su trazo magenta con brillo de neón (`ShellFrame`).
 - "Carta táctil": fotos reales limpias; al tocar cualquier punto aparece el componente principal más cercano (3–4 por plato, sin números; el detalle va en la descripción) (`DishSpotlight`).
-- Fondo del Hero: tenedor-gato a línea dorada que se dibuja al cargar (`CatForkLine`); en "Visítanos", ruta Lima → Alcorcón sobre el contorno de Perú (`PeruRoute`, `peruPath.ts`).
+- Fondo del Hero: tenedor-gato a línea dorada que se dibuja al cargar (`CatForkLine`); en "Visítanos", ruta Trujillo → Alcorcón sobre el contorno de Perú (`PeruRoute`, `peruPath.ts`).
 - Índice de la carta con números romanos y línea de puntos dorada, como la carta impresa (`MenuIndex`).
 
 ## Stack técnico
