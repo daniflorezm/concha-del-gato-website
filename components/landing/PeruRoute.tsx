@@ -5,18 +5,19 @@ import { useId, useRef } from "react";
 import { CAT_FORK_PATH } from "@/components/brand/logoPaths";
 import {
   PERU_HEIGHT,
-  PERU_LIMA,
+  PERU_TRUJILLO,
   PERU_PATH,
 } from "@/components/brand/peruPath";
 import { restaurant } from "@/data/restaurant";
 
-// Ruta simbólica Lima → Alcorcón: contorno de Perú en línea dorada y un arco
+// Ruta simbólica Trujillo → Alcorcón: contorno de Perú en línea dorada y un arco
 // punteado hasta el tenedor-gato del restaurante. No es un mapa a escala.
-const PERU_X = 70;
+// Contorno desplazado a la derecha para que quepa el rótulo "Trujillo".
+const PERU_X = 110;
 const PERU_Y = 20;
-const LIMA = { x: PERU_X + PERU_LIMA.x, y: PERU_Y + PERU_LIMA.y };
+const ORIGIN = { x: PERU_X + PERU_TRUJILLO.x, y: PERU_Y + PERU_TRUJILLO.y };
 const HOME = { x: 850, y: 150 };
-const ARC = `M${LIMA.x} ${LIMA.y} Q 520 20 ${HOME.x} ${HOME.y}`;
+const ARC = `M${ORIGIN.x} ${ORIGIN.y} Q 520 20 ${HOME.x} ${HOME.y}`;
 
 export function PeruRoute() {
   const reduce = useReducedMotion();
@@ -78,15 +79,15 @@ export function PeruRoute() {
       />
 
       <motion.g {...fade(0.3)}>
-        <circle cx={LIMA.x} cy={LIMA.y} r={7} fill="var(--color-brand-turquoise)" />
+        <circle cx={ORIGIN.x} cy={ORIGIN.y} r={7} fill="var(--color-brand-turquoise)" />
         <text
-          x={LIMA.x - 20}
-          y={LIMA.y + 10}
+          x={ORIGIN.x - 20}
+          y={ORIGIN.y + 10}
           textAnchor="end"
           className="fill-foreground font-display"
           fontSize={36}
         >
-          Lima
+          Trujillo
         </text>
       </motion.g>
 
