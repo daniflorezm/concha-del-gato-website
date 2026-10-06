@@ -992,7 +992,7 @@ export const dishes: Dish[] = [
     id: "hamburguesa-de-la-casa",
     name: "Hamburguesa de la Casa",
     category: "fast-food",
-    price: 15.5,
+    price: 16.5,
     description:
       "Doble hamburguesa de carne, lechuga, tomate, huevo, doble queso, patatas fritas y salsas, todo servido dentro de un pan de hamburguesa especial de la casa.",
     allergens: ["gluten", "huevo", "leche", "mostaza*"],
