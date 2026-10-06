@@ -29,7 +29,7 @@ Los tokens viven en `app/globals.css` (`@theme`). El logo está vectorizado en `
 Recursos visuales propios de la web (para que no parezca una plantilla):
 
 - La concha del logo como máscara de las fotos, con su trazo magenta con brillo de neón (`ShellFrame`).
-- "Carta táctil": fotos reales limpias; al tocar cualquier punto aparece el componente principal más cercano (3–4 por plato, sin números; el detalle va en la descripción) (`DishSpotlight`).
+- "Carta táctil": fotos reales limpias; al tocar cualquier punto aparece el componente principal más cercano (3–4 por plato, sin números; el detalle va en la descripción) (`HotspotPhoto`, usado en la landing por `DishSpotlight` y en /carta al desplegar la foto de cada plato).
 - Fondo del Hero: tenedor-gato a línea dorada que se dibuja al cargar (`CatForkLine`); en "Visítanos", ruta Lima → Alcorcón sobre el contorno de Perú (`PeruRoute`, `peruPath.ts`).
 - Índice de la carta con números romanos y línea de puntos dorada, como la carta impresa (`MenuIndex`).
 
@@ -58,7 +58,8 @@ Sin 3D ni más librerías de animación: mantener el stack acotado.
   /brand/LineTexture.tsx       → textura de fondo de ilustraciones lineales
   /layout/SiteHeader.tsx, SiteFooter.tsx
   /landing/*                   → Hero, IngredientMarquee, DishSpotlight, MenuIndex, VisitSection
-  /carta/MenuItem.tsx          → fila de plato en /carta
+  /dish/HotspotPhoto.tsx       → foto con ingredientes tocables (landing y carta)
+  /carta/MenuItem.tsx          → fila de plato en /carta (la miniatura despliega la foto)
 /data
   dishes.ts                    → array tipado con todos los platos (ver esquema abajo)
   restaurant.ts                → dirección, teléfono, horario, enlaces a Maps
@@ -76,6 +77,7 @@ type Dish = {
   price: number | null;       // en euros; null = pendiente de confirmar con la carta impresa (no se muestra)
   description: string;        // texto de la carta (vacío en guarniciones y bebidas)
   allergens?: string[];       // "x*" = según elaboración; [] = ninguno; ausente = sin dato
+  featured?: boolean;         // sale en la landing ("Cada plato, por dentro")
   photo?: {                   // foto real del plato (WebP en /public/images/platos/)
     src: string; width: number; height: number;
     hotspots?: { label: string; x: number; y: number }[]; // ingredientes señalados sobre la foto, en % de ancho/alto
@@ -85,7 +87,9 @@ type Dish = {
 
 Categorías y platos tomados de `CARTA CON DESCRIPCION Y ALERGENOS.docx` (la carta vigente): Entradas, Ceviches, Los Crocantes, Arroces Criollos y Marinos, Nuestras Sopas, Dúos/Tríos/Barcos Marinos, Los Tacu Tacus, Criollos y Especiales de la Casa, Brasas y Broasters, Fast Food, Guarniciones y Bebidas y Licores (~98 entradas). El sitio es **data-driven**: se itera `dishes.ts` sobre `MenuItem` / `DishSpotlight`; las categorías sin platos no se muestran.
 
-Estado actual: carta completa con precios, descripciones y alérgenos. 22 platos tienen foto real (sesión de fotos del iPhone); solo los 5 con ingredientes tocables (`hotspots`) salen en la landing, el resto de fotos se ve en /carta.
+Estado actual: carta completa con precios, descripciones y alérgenos. 22 platos tienen foto real con ingredientes tocables; solo los 5 `featured` salen en la landing, el resto se despliega en /carta.
+
+Fotos: todas con el mismo formato — toma de tres cuartos a la altura de la mesa, plato entero sobre el borde, fondo de madera oscura, sin botellas ni vasos, recorte 4:5 (1200×1500 WebP). Origen: sesión del iPhone (HEIC) y, para el chaufa de mariscos y la parihuela, la Canon (JPG + CR2, solo con ajuste de exposición). Nada de edición generativa.
 
 ## Datos del restaurante
 
