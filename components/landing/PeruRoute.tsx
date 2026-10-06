@@ -26,14 +26,13 @@ export function PeruRoute() {
   // fallaba en móvil con elementos pequeños.
   const ref = useRef<SVGSVGElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
-  const fade = (delay: number) =>
-    reduce
-      ? {}
-      : {
-          initial: { opacity: 0 },
-          animate: { opacity: inView ? 1 : 0 },
-          transition: { duration: 0.8, delay },
-        };
+  // Con "reducir movimiento" se muestra todo al instante. No vale con no pasar
+  // props: el HTML del servidor ya trae opacity 0 y se quedaría invisible.
+  const fade = (delay: number) => ({
+    initial: { opacity: 0 },
+    animate: { opacity: reduce || inView ? 1 : 0 },
+    transition: reduce ? { duration: 0 } : { duration: 0.8, delay },
+  });
 
   return (
     <svg
