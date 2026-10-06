@@ -29,8 +29,9 @@ export default function CartaPage() {
         aria-label="Categorías de la carta"
         className="sticky top-16 z-[60] -mx-4 mb-10 border-y border-brand-gold/15 bg-background py-3 sm:mx-0 sm:rounded-full sm:border"
       >
-        {/* El degradado del borde derecho indica que la barra se desliza. */}
-        <div className="overflow-x-auto px-4 [mask-image:linear-gradient(to_right,black_85%,transparent)] sm:px-3">
+        {/* El degradado del borde derecho indica que la barra se desliza; sin
+            barra de desplazamiento visible (en escritorio se veía bajo los botones). */}
+        <div className="overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,black_85%,transparent)] sm:px-3">
           <ul className="flex w-max gap-2 pr-10">
             {categories.map((category) => (
               <li key={category.id}>
