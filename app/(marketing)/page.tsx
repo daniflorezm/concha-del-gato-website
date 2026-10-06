@@ -6,8 +6,8 @@ import { VisitSection } from "@/components/landing/VisitSection";
 import { dishes } from "@/data/dishes";
 
 export default function Home() {
-  // En la landing solo los platos con ingredientes tocables; el resto de fotos va en /carta.
-  const withPhoto = dishes.filter((dish) => dish.photo?.hotspots?.length);
+  // En la landing solo los platos destacados; el resto de fotos se abre en /carta.
+  const withPhoto = dishes.filter((dish) => dish.featured && dish.photo);
   const heroDish = withPhoto.find((dish) => dish.category === "duos-trios") ?? withPhoto[0];
   const spotlights = withPhoto.filter((dish) => dish !== heroDish).concat(heroDish ? [heroDish] : []);
 
