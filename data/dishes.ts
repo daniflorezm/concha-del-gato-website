@@ -50,11 +50,13 @@ export type Dish = {
   description: string;
   /** Alérgenos de la carta (un * final = según elaboración). Vacío = ninguno; ausente = sin dato. */
   allergens?: string[];
+  /** Sale en la landing ("Cada plato, por dentro"). El resto de fotos se ve en /carta. */
+  featured?: boolean;
   photo?: DishPhoto;
 };
 
-// Carta completa de "CARTA CON DESCRIPCION Y ALERGENOS.docx". Los platos con
-// puntos de ingredientes salen también en la landing; el resto de fotos, solo en /carta.
+// Carta completa de "CARTA CON DESCRIPCION Y ALERGENOS.docx". Todas las fotos
+// llevan ingredientes tocables; solo los platos `featured` salen en la landing.
 export const dishes: Dish[] = [
   {
     id: "papa-a-la-huancaina",
@@ -64,7 +66,17 @@ export const dishes: Dish[] = [
     description:
       "Rodajas de papa sancochadas bañadas en cremosa salsa de ají amarillo y queso, acompañadas de huevo y aceituna.",
     allergens: ["leche", "huevo"],
-    photo: { src: "/images/platos/papa-a-la-huancaina.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/papa-a-la-huancaina.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Aceituna de botija", x: 41, y: 34 },
+        { label: "Salsa huancaína", x: 30, y: 52 },
+        { label: "Papa sancochada", x: 58, y: 53 },
+        { label: "Huevo", x: 46, y: 73 },
+      ],
+    },
   },
   {
     id: "yuquitas-fritas-con-huancaina",
@@ -83,7 +95,17 @@ export const dishes: Dish[] = [
     description:
       "Concentrado de leche de tigre peruana, cítricos, ají, cilantro, pescado y un toque de base cevichera de la casa.",
     allergens: ["pescado", "crustáceos*"],
-    photo: { src: "/images/platos/leche-de-tigre.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/leche-de-tigre.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Leche de tigre", x: 45, y: 48 },
+        { label: "Chicharrón de pota", x: 57, y: 68 },
+        { label: "Camote", x: 25, y: 84 },
+        { label: "Chifle", x: 58, y: 17 },
+      ],
+    },
   },
   {
     id: "causa-limena",
@@ -93,6 +115,7 @@ export const dishes: Dish[] = [
     description:
       "Suave masa de papa saborizada con ají amarillo, sal y punto de limón, rellena y coronada de pollo deshilachado con mayonesa y aguacate.",
     allergens: ["huevo"],
+    featured: true,
     photo: {
       src: "/images/platos/causa-limena.webp",
       width: 1200,
@@ -116,6 +139,7 @@ export const dishes: Dish[] = [
     description:
       "Deliciosa masa de causa, rellena de aguacate y coronada con un fresco ceviche clásico.",
     allergens: ["pescado", "huevo"],
+    featured: true,
     photo: {
       src: "/images/platos/causa-acevichada.webp",
       width: 1200,
@@ -139,7 +163,17 @@ export const dishes: Dish[] = [
     description:
       "Finas láminas de pescado fresco bañadas en cremosa salsa de ají amarillo y limón.",
     allergens: ["pescado", "leche*"],
-    photo: { src: "/images/platos/tiradito-al-aji-amarillo.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/tiradito-al-aji-amarillo.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Cancha", x: 22, y: 34 },
+        { label: "Camote", x: 9, y: 43 },
+        { label: "Pescado en crema de ají", x: 62, y: 58 },
+        { label: "Choclo", x: 40, y: 63 },
+      ],
+    },
   },
   {
     id: "anticucho-clasico",
@@ -157,7 +191,17 @@ export const dishes: Dish[] = [
     description:
       "Pinchos de corazón de ternera y rachi (librillo), marinadas en salsa anticuchera y acompañado de papas doradas, choclo y salsa.",
     allergens: [],
-    photo: { src: "/images/platos/anticucho-mixto-de-rachi-o-librillo.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/anticucho-mixto-de-rachi-o-librillo.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Corazón a la parrilla", x: 51, y: 54 },
+        { label: "Rachi", x: 63, y: 68 },
+        { label: "Choclo", x: 69, y: 39 },
+        { label: "Salsa anticuchera", x: 23, y: 54 },
+      ],
+    },
   },
   {
     id: "porcion-de-rachi-o-librillo",
@@ -194,7 +238,17 @@ export const dishes: Dish[] = [
     description:
       "Gajos de pescado fresco marinado en limón, cebolla roja, ají y cilantro, acompañado de camote en almíbar, choclo y maíz.",
     allergens: ["pescado", "crustáceos*"],
-    photo: { src: "/images/platos/ceviche-clasico.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/ceviche-clasico.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Camote", x: 49, y: 46 },
+        { label: "Pescado marinado", x: 38, y: 61 },
+        { label: "Choclo", x: 63, y: 64 },
+        { label: "Leche de tigre", x: 51, y: 73 },
+      ],
+    },
   },
   {
     id: "ceviche-mixto",
@@ -204,7 +258,17 @@ export const dishes: Dish[] = [
     description:
       "Pescado fresco, conchas de abanico y mariscos seleccionados marinado con limón, cebolla roja, ají y cilantro.",
     allergens: ["pescado", "crustáceos", "moluscos"],
-    photo: { src: "/images/platos/ceviche-mixto.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/ceviche-mixto.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Concha de abanico", x: 26, y: 52 },
+        { label: "Choclo", x: 32, y: 66 },
+        { label: "Pescado y mariscos", x: 55, y: 62 },
+        { label: "Camote", x: 76, y: 60 },
+      ],
+    },
   },
   {
     id: "ceviche-del-gato",
@@ -214,7 +278,17 @@ export const dishes: Dish[] = [
     description:
       "Pescado fresco, conchas de abanico y mariscos seleccionados marinado con limón, cebolla roja, ají y cilantro, coronado con ceviche de conchas negras y acompañado de chicharrón de pota, yuca, camote y maíz.",
     allergens: ["pescado", "crustáceos", "moluscos"],
-    photo: { src: "/images/platos/ceviche-del-gato.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/ceviche-del-gato.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Conchas negras", x: 47, y: 57 },
+        { label: "Chicharrón de pota", x: 77, y: 65 },
+        { label: "Yuca", x: 64, y: 74 },
+        { label: "Camote", x: 67, y: 43 },
+      ],
+    },
   },
   {
     id: "ceviche-de-conchas-negras",
@@ -260,7 +334,17 @@ export const dishes: Dish[] = [
     description:
       "Un especial de la casa: dorada frita y mariscos crocantes, acompañados de yuca, salsa criolla, tártara, chifles y maíz cancha.",
     allergens: ["pescado", "crustáceos", "moluscos", "gluten*"],
-    photo: { src: "/images/platos/jalea-del-gato.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/jalea-del-gato.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Dorada frita", x: 17, y: 47 },
+        { label: "Mariscos crocantes", x: 59, y: 55 },
+        { label: "Yuca frita", x: 12, y: 72 },
+        { label: "Salsa tártara", x: 86, y: 66 },
+      ],
+    },
   },
   {
     id: "pescado-frito",
@@ -306,7 +390,17 @@ export const dishes: Dish[] = [
     description:
       "Arroz salteado al wok con mariscos seleccionados, huevo, cebolla china y salsa de soja.",
     allergens: ["crustáceos", "moluscos", "soja", "huevo"],
-    photo: { src: "/images/platos/arroz-chaufa-de-mariscos.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/arroz-chaufa-de-mariscos.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Concha de abanico", x: 15, y: 60 },
+        { label: "Tortilla de huevo", x: 51, y: 45 },
+        { label: "Langostino", x: 36, y: 53 },
+        { label: "Arroz chaufa", x: 45, y: 69 },
+      ],
+    },
   },
   {
     id: "arroz-chaufa-de-langostinos",
@@ -379,7 +473,17 @@ export const dishes: Dish[] = [
     description:
       "Potente caldo marino con pescado entero, mariscos seleccionados, cangrejo, mejillón, conchas, yuca, salsa madre de la casa, chicha de jora y punto de limón.",
     allergens: ["pescado", "crustáceos", "moluscos"],
-    photo: { src: "/images/platos/parihuela-de-mariscos.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/parihuela-de-mariscos.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Cangrejo", x: 32, y: 36 },
+        { label: "Mariscos", x: 47, y: 57 },
+        { label: "Caldo marino", x: 60, y: 80 },
+        { label: "Concha de abanico", x: 24, y: 83 },
+      ],
+    },
   },
   {
     id: "chupe-de-pescado",
@@ -389,7 +493,16 @@ export const dishes: Dish[] = [
     description:
       "Sopa tradicional peruana hecha a base de filete de pescado, pasta de ají amarillo, queso, leche, papa, arroz, guisantes, huevo escalfado y saborizado con huacatay.",
     allergens: ["pescado", "leche", "huevo"],
-    photo: { src: "/images/platos/chupe-de-pescado.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/chupe-de-pescado.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Huevo escalfado", x: 42, y: 61 },
+        { label: "Huacatay", x: 49, y: 51 },
+        { label: "Caldo de ají amarillo y queso", x: 30, y: 56 },
+      ],
+    },
   },
   {
     id: "chupe-de-langostinos",
@@ -417,6 +530,7 @@ export const dishes: Dish[] = [
     description:
       "Combina tres de tus favoritos entre ceviches, chicharrones, causa y arroces marinos para crear tu propio trío.",
     allergens: ["según los platos elegidos"],
+    featured: true,
     photo: {
       src: "/images/platos/trio-de-la-concha.webp",
       width: 1600,
@@ -494,6 +608,7 @@ export const dishes: Dish[] = [
     description:
       "Cremosa mezcla de frejoles y arroz cocido, dorado y roleado en sartén, con salsa de mariscos.",
     allergens: ["crustáceos", "moluscos", "leche*"],
+    featured: true,
     photo: {
       src: "/images/platos/tacu-tacu-mariscos.webp",
       width: 1200,
@@ -525,6 +640,7 @@ export const dishes: Dish[] = [
     description:
       "Tiernas tiras de ternera salteadas con cebolla, tomate, ají y salsa de soja, acompañadas de patatas fritas y arroz.",
     allergens: ["soja*"],
+    featured: true,
     photo: {
       src: "/images/platos/lomo-saltado.webp",
       width: 1200,
@@ -629,7 +745,16 @@ export const dishes: Dish[] = [
     description:
       "Fetuccini bañados en salsa huancaína, acompañados de nuestro clásico lomo saltado.",
     allergens: ["gluten", "leche", "huevo*", "soja*"],
-    photo: { src: "/images/platos/fetuccini-a-la-huancaina-con-lomo-saltado.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/fetuccini-a-la-huancaina-con-lomo-saltado.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Fetuccini a la huancaína", x: 20, y: 58 },
+        { label: "Lomo saltado", x: 73, y: 50 },
+        { label: "Cebolla y tomate", x: 64, y: 61 },
+      ],
+    },
   },
   {
     id: "fetuccini-en-salsa-de-langostinos",
@@ -639,7 +764,16 @@ export const dishes: Dish[] = [
     description:
       "Fetuccini con cremosa salsa de langostinos al estilo de la casa.",
     allergens: ["gluten", "crustáceos", "leche", "huevo*"],
-    photo: { src: "/images/platos/fetuccini-en-salsa-de-langostinos.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/fetuccini-en-salsa-de-langostinos.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Langostinos", x: 52, y: 53 },
+        { label: "Fetuccini", x: 33, y: 68 },
+        { label: "Salsa de la casa", x: 68, y: 66 },
+      ],
+    },
   },
   {
     id: "pescado-a-lo-macho",
@@ -658,7 +792,17 @@ export const dishes: Dish[] = [
     description:
       "Cremosa salsa a base de ají amarillo, saborizada con nueces, queso y leche, acompañada de arroz, papa cocida, huevo y aceituna.",
     allergens: ["leche", "huevo*", "frutos secos*"],
-    photo: { src: "/images/platos/aji-de-gallina.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/aji-de-gallina.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Arroz blanco", x: 40, y: 47 },
+        { label: "Huevo", x: 58, y: 61 },
+        { label: "Aceituna de botija", x: 56, y: 71 },
+        { label: "Crema de ají con gallina", x: 38, y: 82 },
+      ],
+    },
   },
   {
     id: "seco-de-ternera-a-la-nortena",
@@ -668,7 +812,17 @@ export const dishes: Dish[] = [
     description:
       "Clásico del norte del Perú: tierna ternera guisada lentamente con cilantro, especias, loche y chicha de jora, acompañada de arroz, frejoles y salsa criolla.",
     allergens: ["apio*"],
-    photo: { src: "/images/platos/seco-de-ternera-a-la-nortena.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/seco-de-ternera-a-la-nortena.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Arroz blanco", x: 18, y: 40 },
+        { label: "Salsa criolla", x: 47, y: 36 },
+        { label: "Seco de ternera", x: 30, y: 59 },
+        { label: "Frejoles", x: 61, y: 67 },
+      ],
+    },
   },
   {
     id: "arroz-con-pato",
@@ -678,7 +832,17 @@ export const dishes: Dish[] = [
     description:
       "Tradicional arroz peruano cocinado con pato, cilantro, ajíes y especias, servido sobre un espejo de salsa huancaína y salsa criolla.",
     allergens: ["apio*"],
-    photo: { src: "/images/platos/arroz-con-pato.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/arroz-con-pato.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Pato", x: 18, y: 57 },
+        { label: "Arroz verde al culantro", x: 52, y: 44 },
+        { label: "Salsa criolla", x: 78, y: 40 },
+        { label: "Salsa huancaína", x: 75, y: 58 },
+      ],
+    },
   },
   {
     id: "chicharron-de-chancho-al-plato",
@@ -697,7 +861,17 @@ export const dishes: Dish[] = [
     description:
       "Una selección de clásicos: chanfainita, papa a la huancaína, ceviche y tallarines rojos.",
     allergens: ["según composición"],
-    photo: { src: "/images/platos/combinado-criollo.webp", width: 1200, height: 1500 },
+    photo: {
+      src: "/images/platos/combinado-criollo.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Ceviche", x: 37, y: 42 },
+        { label: "Papa a la huancaína", x: 68, y: 53 },
+        { label: "Tallarines rojos", x: 51, y: 72 },
+        { label: "Chanfainita", x: 19, y: 60 },
+      ],
+    },
   },
   {
     id: "pollo-a-la-brasa-1-pollo",
