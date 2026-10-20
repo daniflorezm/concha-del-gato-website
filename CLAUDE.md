@@ -96,7 +96,7 @@ Fotos: todas con el mismo formato — toma de tres cuartos a la altura de la mes
 
 ## Carta impresa
 
-`/carta/imprimir` genera la carta física desde `dishes.ts` y `restaurant.ts`: portada con el logo, platos a dos columnas en A4 (mismo orden, nombres, precios, descripciones, alérgenos y miniaturas de foto que /carta) y horario/contacto al final. Fondo negro a sangre por defecto; `?fondo=claro` para impresora doméstica. Se imprime con el botón de la página o Ctrl+P → "Guardar como PDF" (en Chrome, activar "Gráficos de fondo"). Los estilos de impresión están al final de `app/globals.css`. Tras cambiar la carta, regenerar el PDF: no guardar PDFs en el repo.
+`/carta/imprimir` genera la carta física desde `dishes.ts` y `restaurant.ts` (8 páginas A4): portada con el logo, platos a dos columnas en el mismo orden que /carta pero solo con nombre y precio (los que tienen foto la llevan grande, a todo el ancho de la columna; descripciones y alérgenos quedan en la carta digital) y contraportada con horario, contacto y aviso de alérgenos. Marco dorado en cada hoja (`components/print/PrintFrame.tsx`). Fondo negro a sangre por defecto; `?fondo=claro` para impresora doméstica. Se imprime con el botón de la página o Ctrl+P → "Guardar como PDF" (en Chrome, activar "Gráficos de fondo"). Los estilos de impresión están al final de `app/globals.css`. Tras cambiar la carta, regenerar el PDF: no guardar PDFs en el repo.
 
 ## Datos del restaurante
 

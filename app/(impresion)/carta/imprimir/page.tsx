@@ -13,8 +13,9 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-// Carta física en A4 generada desde dishes.ts: mismo contenido y orden que
-// /carta, con la miniatura de cada plato que tiene foto. "?fondo=claro" da una
+// Carta física en A4 generada desde dishes.ts, en el mismo orden que /carta:
+// solo nombre y precio, con foto grande en los platos que la tienen. Las
+// descripciones y alérgenos quedan en la carta digital. "?fondo=claro" da una
 // versión para impresora doméstica.
 export default async function CartaImprimirPage({ searchParams }: PageProps<"/carta/imprimir">) {
   const light = (await searchParams).fondo === "claro";
@@ -62,42 +63,30 @@ export default async function CartaImprimirPage({ searchParams }: PageProps<"/ca
                 {category.dishes.map((dish) => {
                   const price = formatPrice(dish.price);
                   return (
-                    <li key={dish.id} className="carta-dish flex gap-[3mm] border-b border-brand-gold/15 py-[1.7mm] last:border-b-0">
+                    <li key={dish.id} className="carta-dish border-b border-brand-gold/15 py-[2mm] last:border-b-0">
                       {dish.photo && (
-                        // Mismo recorte que la miniatura de /carta. "eager": al
+                        // Foto a todo el ancho de la columna. "eager": al
                         // imprimir, las imágenes diferidas pueden no llegar a cargar.
-                        <div className="relative h-[20mm] w-[20mm] shrink-0 overflow-hidden rounded-[3mm] border border-brand-gold/25">
+                        <div className="relative mb-[2mm] aspect-[4/3] w-full overflow-hidden rounded-[3mm] border border-brand-gold/30">
                           <Image
                             src={dish.photo.src}
                             alt=""
                             fill
-                            sizes="480px"
+                            sizes="1000px"
                             loading="eager"
-                            className="scale-[1.6] object-cover"
+                            className="object-cover"
                           />
                         </div>
                       )}
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-baseline gap-[2mm]">
-                          <h3 className="font-display text-[12pt] font-semibold leading-snug text-foreground">
-                            {dish.name}
-                          </h3>
-                          <span className="mb-[1mm] flex-1 border-b border-dotted border-brand-gold/50" />
-                          {price && (
-                            <span className="whitespace-nowrap font-display text-[12pt] font-semibold text-brand-gold">
-                              {price}
-                            </span>
-                          )}
-                        </div>
-                        {dish.description && (
-                          <p className="mt-[0.6mm] text-[8.5pt] leading-[1.35] text-foreground/75">
-                            {dish.description}
-                          </p>
-                        )}
-                        {dish.allergens && (
-                          <p className="mt-[0.4mm] text-[7pt] text-foreground/55">
-                            Alérgenos: {dish.allergens.length ? dish.allergens.join(", ") : "ninguno"}
-                          </p>
+                      <div className="flex items-baseline gap-[2mm]">
+                        <h3 className="font-display text-[12pt] font-semibold leading-snug text-foreground">
+                          {dish.name}
+                        </h3>
+                        <span className="mb-[1mm] flex-1 border-b border-dotted border-brand-gold/50" />
+                        {price && (
+                          <span className="whitespace-nowrap font-display text-[12pt] font-semibold text-brand-gold">
+                            {price}
+                          </span>
                         )}
                       </div>
                     </li>
@@ -107,26 +96,40 @@ export default async function CartaImprimirPage({ searchParams }: PageProps<"/ca
             </section>
           ))}
         </div>
+      </section>
 
-        <footer className="carta-footer mt-[8mm] flex flex-col items-center gap-[2.5mm] text-center text-[8pt] text-foreground/65">
-          <Ornament className="mb-[2mm] w-[80mm]" />
-          <p>
-            Los alérgenos marcados con * pueden variar según la elaboración. Si tienes alguna
-            alergia o intolerancia, avísanos antes de pedir.
-          </p>
-          <p className="flex flex-wrap justify-center gap-x-[4mm]">
+      {/* Contraportada */}
+      <section className="carta-sheet carta-cover carta-back relative flex flex-col items-center justify-center gap-[10mm] overflow-hidden text-center">
+        <LineTexture className="text-foreground/[0.05]" />
+        <PrintFrame className="carta-frame--screen" />
+        <div className="relative flex flex-col items-center gap-[4mm]">
+          <Logo className="h-[28mm] w-[32mm]" />
+          <p className="font-logo text-[20pt] tracking-[0.08em] text-brand-gold">{restaurant.name}</p>
+          <p className="text-[8pt] uppercase tracking-[0.4em] text-brand-turquoise">{restaurant.tagline}</p>
+        </div>
+        <Ornament className="relative w-[60mm]" />
+        <div className="relative flex flex-col items-center gap-[2mm]">
+          <p className="font-logo text-[11pt] tracking-[0.2em] text-brand-gold">Horario</p>
+          <dl className="grid grid-cols-[auto_auto] gap-x-[8mm] gap-y-[1.2mm] text-left text-[10pt]">
             {openingHours.map((day) => (
-              <span key={day.day}>
-                <span className="text-brand-gold">{day.label}</span> {formatSlots(day.slots)}
-              </span>
+              <div key={day.day} className="contents">
+                <dt className="font-display text-[12pt] text-brand-gold">{day.label}</dt>
+                <dd className="text-foreground/80">{formatSlots(day.slots)}</dd>
+              </div>
             ))}
+          </dl>
+        </div>
+        <Ornament className="relative w-[60mm]" />
+        <div className="relative flex flex-col items-center gap-[1.5mm] text-[10pt] text-foreground/80">
+          <p>
+            {address.street} · {address.postalCode} {address.city}, {address.region}
           </p>
-          <p className="flex items-center gap-[2mm]">
-            <Logo className="h-[6mm] w-[7mm]" />
-            <span className="font-logo text-brand-gold">{restaurant.name}</span> ·{" "}
-            {address.street}, {address.city} · {restaurant.phone}
-          </p>
-        </footer>
+          <p className="font-display text-[14pt] text-brand-gold">Tel. {restaurant.phone}</p>
+        </div>
+        <p className="relative max-w-[120mm] text-[8.5pt] leading-relaxed text-foreground/60">
+          Consulta los ingredientes y alérgenos de cada plato con nuestro personal o en la
+          carta digital. Si tienes alguna alergia o intolerancia, avísanos antes de pedir.
+        </p>
       </section>
     </div>
   );

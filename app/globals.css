@@ -142,8 +142,7 @@ body {
 }
 
 .carta-category-title,
-.carta-dish,
-.carta-footer {
+.carta-dish {
   break-inside: avoid;
 }
 
@@ -169,6 +168,11 @@ body {
 
   .carta-cover {
     break-after: page;
+  }
+
+  .carta-back {
+    break-before: page;
+    break-after: auto;
   }
 
   .carta-frame--screen {
