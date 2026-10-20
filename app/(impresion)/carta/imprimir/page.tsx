@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Logo } from "@/components/brand/Logo";
 import { LineTexture } from "@/components/brand/LineTexture";
 import { ROMAN } from "@/components/landing/MenuIndex";
+import { CategoryBlock } from "@/components/print/CategoryBlock";
 import { Ornament, PrintFrame } from "@/components/print/PrintFrame";
+import { PrintPages } from "@/components/print/PrintPages";
 import { PrintToolbar } from "@/components/print/PrintToolbar";
-import { categoriesWithDishes, formatPrice, type DishPhoto } from "@/data/dishes";
+import { categoriesWithDishes } from "@/data/dishes";
 import { formatSlots, openingHours, restaurant } from "@/data/restaurant";
 
 export const metadata: Metadata = {
@@ -17,17 +18,6 @@ export const metadata: Metadata = {
 // solo nombre y precio, con foto grande en los platos que la tienen. Las
 // descripciones y alérgenos quedan en la carta digital. "?fondo=claro" da una
 // versión para impresora doméstica.
-const PRINT_PHOTO_RATIO = 4 / 3;
-
-// object-position que deja el centro del plato (photo.centerY) en el centro
-// del recorte 4:3. Solo aplica a fotos más altas que el recorte.
-function photoPosition(photo: DishPhoto) {
-  const visible = photo.width / photo.height / PRINT_PHOTO_RATIO;
-  if (photo.centerY === undefined || visible >= 1) return undefined;
-  const offset = (photo.centerY / 100 - visible / 2) / (1 - visible);
-  return `50% ${Math.min(Math.max(offset, 0), 1) * 100}%`;
-}
-
 export default async function CartaImprimirPage({ searchParams }: PageProps<"/carta/imprimir">) {
   const light = (await searchParams).fondo === "claro";
   const categories = categoriesWithDishes();
@@ -36,13 +26,11 @@ export default async function CartaImprimirPage({ searchParams }: PageProps<"/ca
   return (
     <div className={`carta-print ${light ? "carta-print--light" : ""}`}>
       <PrintToolbar light={light} />
-      {/* Al imprimir, este marco se repite en cada hoja (position: fixed). */}
-      <PrintFrame className="carta-frame--print" />
 
       {/* Portada */}
       <section className="carta-sheet carta-cover relative flex flex-col items-center justify-between overflow-hidden text-center">
         <LineTexture className="text-foreground/[0.05]" />
-        <PrintFrame className="carta-frame--screen" />
+        <PrintFrame />
         <p className="relative text-[9pt] uppercase tracking-[0.4em] text-brand-turquoise">
           Cocina peruana
         </p>
@@ -59,61 +47,18 @@ export default async function CartaImprimirPage({ searchParams }: PageProps<"/ca
         </div>
       </section>
 
-      {/* Platos: dos columnas que fluyen de una página a otra */}
-      <section className="carta-sheet carta-body relative">
-        <PrintFrame className="carta-frame--screen" />
-        <div className="carta-columns">
-          {categories.map((category, i) => (
-            <section key={category.id} className="carta-category">
-              <header className="carta-category-title mb-[2mm] flex flex-col items-center text-center text-brand-gold">
-                <span className="font-logo text-[8pt] tracking-[0.3em] opacity-70">{ROMAN[i]}</span>
-                <h2 className="font-display text-[16pt] leading-tight">{category.label}</h2>
-                <Ornament className="mt-[1mm] w-[45mm]" />
-              </header>
-              <ul>
-                {category.dishes.map((dish) => {
-                  const price = formatPrice(dish.price);
-                  return (
-                    <li key={dish.id} className="carta-dish border-b border-brand-gold/15 py-[2mm] last:border-b-0">
-                      {dish.photo && (
-                        // Foto a todo el ancho de la columna. "eager": al
-                        // imprimir, las imágenes diferidas pueden no llegar a cargar.
-                        <div className="relative mb-[2mm] aspect-[4/3] w-full overflow-hidden rounded-[3mm] border border-brand-gold/30">
-                          <Image
-                            src={dish.photo.src}
-                            alt=""
-                            fill
-                            sizes="1000px"
-                            loading="eager"
-                            className="object-cover"
-                            style={{ objectPosition: photoPosition(dish.photo) }}
-                          />
-                        </div>
-                      )}
-                      <div className="flex items-baseline gap-[2mm]">
-                        <h3 className="font-display text-[12pt] font-semibold leading-snug text-foreground">
-                          {dish.name}
-                        </h3>
-                        <span className="mb-[1mm] flex-1 border-b border-dotted border-brand-gold/50" />
-                        {price && (
-                          <span className="whitespace-nowrap font-display text-[12pt] font-semibold text-brand-gold">
-                            {price}
-                          </span>
-                        )}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </section>
-          ))}
-        </div>
-      </section>
+      {/* Platos: cada categoría es un bloque entero que PrintPages coloca en
+          las hojas. */}
+      <PrintPages
+        blocks={categories.map((category, i) => (
+          <CategoryBlock key={category.id} numeral={ROMAN[i]} label={category.label} dishes={category.dishes} />
+        ))}
+      />
 
       {/* Contraportada */}
-      <section className="carta-sheet carta-cover carta-back relative flex flex-col items-center justify-center gap-[10mm] overflow-hidden text-center">
+      <section className="carta-sheet carta-cover relative flex flex-col items-center justify-center gap-[10mm] overflow-hidden text-center">
         <LineTexture className="text-foreground/[0.05]" />
-        <PrintFrame className="carta-frame--screen" />
+        <PrintFrame />
         <div className="relative flex flex-col items-center gap-[4mm]">
           <Logo className="h-[28mm] w-[32mm]" />
           <p className="font-logo text-[20pt] tracking-[0.08em] text-brand-gold">{restaurant.name}</p>

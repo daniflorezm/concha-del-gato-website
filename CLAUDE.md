@@ -62,7 +62,7 @@ Sin 3D ni más librerías de animación: mantener el stack acotado.
   /landing/*                   → Hero, IngredientMarquee, DishSpotlight, MenuIndex, VisitSection
   /dish/HotspotPhoto.tsx       → foto con ingredientes tocables (landing y carta)
   /carta/MenuItem.tsx          → fila de plato en /carta (la miniatura despliega la foto)
-  /print/PrintToolbar.tsx      → barra de /carta/imprimir (solo pantalla)
+  /print/*                     → carta impresa: CategoryBlock, PrintPages (reparto en hojas), PrintFrame, PrintToolbar
 /data
   dishes.ts                    → array tipado con todos los platos (ver esquema abajo)
   restaurant.ts                → dirección, teléfono, horario, enlaces a Maps
@@ -97,7 +97,7 @@ Fotos: todas con el mismo formato — toma de tres cuartos a la altura de la mes
 
 ## Carta impresa
 
-`/carta/imprimir` genera la carta física desde `dishes.ts` y `restaurant.ts` (8 páginas A4): portada con el logo, platos a dos columnas en el mismo orden que /carta pero solo con nombre y precio (los que tienen foto la llevan grande, a todo el ancho de la columna; descripciones y alérgenos quedan en la carta digital) y contraportada con horario, contacto y aviso de alérgenos. Marco dorado en cada hoja (`components/print/PrintFrame.tsx`). Fondo negro a sangre por defecto; `?fondo=claro` para impresora doméstica. Se imprime con el botón de la página o Ctrl+P → "Guardar como PDF" (en Chrome, activar "Gráficos de fondo"). Los estilos de impresión están al final de `app/globals.css`. Tras cambiar la carta, regenerar el PDF: no guardar PDFs en el repo.
+`/carta/imprimir` genera la carta física desde `dishes.ts` y `restaurant.ts`: portada, hojas de platos y contraportada con horario, contacto y aviso de alérgenos, todas A4 con marco dorado (`PrintFrame`). Solo nombre y precio (descripciones y alérgenos quedan en la carta digital). Cada categoría es un bloque con una de dos composiciones fijas (`CategoryBlock`): con una foto, ficha a la izquierda y lista al lado; con varias, fichas de tres en tres y lista a dos columnas debajo. `PrintPages` mide los bloques en el navegador y los reparte en hojas sin partir ninguna categoría, igualando el hueco libre; si una categoría crece más que una hoja (263 mm útiles), hay que compactarla. Fondo negro a sangre por defecto; `?fondo=claro` para impresora doméstica. Se imprime con el botón de la página o Ctrl+P → "Guardar como PDF" (en Chrome, activar "Gráficos de fondo"). Los estilos de impresión están al final de `app/globals.css`. Tras cambiar la carta, regenerar el PDF: no guardar PDFs en el repo.
 
 ## Datos del restaurante
 

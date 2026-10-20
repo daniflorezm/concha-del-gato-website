@@ -81,8 +81,8 @@ body {
 
 /* ---- Carta imprimible (/carta/imprimir) ---- */
 
-/* Sin margen de página: el fondo llega al borde y el marco fijo (que Chrome
-   recorta al área de página) puede ir a 7 mm del papel. */
+/* Sin margen de página: cada hoja de la carta es un bloque A4 completo,
+   con su fondo y su marco. */
 @page {
   size: A4;
   margin: 0;
@@ -115,39 +115,27 @@ body {
   box-shadow: 0 4px 24px rgb(0 0 0 / 0.4);
 }
 
-.carta-cover {
+.carta-cover,
+.carta-page {
   height: 297mm;
+  overflow: hidden;
+}
+
+.carta-cover {
   padding: 26mm 22mm 24mm;
 }
 
-/* Marco: en pantalla, uno por hoja; al imprimir, uno fijo que Chrome repite
-   en cada página. */
 .carta-frame {
   position: absolute;
   inset: 7mm;
   z-index: 1;
 }
 
-.carta-frame--print {
-  display: none;
-}
-
-.carta-columns {
-  column-count: 2;
-  column-gap: 9mm;
-}
-
-.carta-category {
-  margin-bottom: 5mm;
-}
-
-.carta-category-title,
-.carta-dish {
-  break-inside: avoid;
-}
-
-.carta-category-title {
-  break-after: avoid;
+/* Tres fichas por fila (6 mm de separación); las filas incompletas se
+   centran con justify-content. */
+.carta-card {
+  width: calc((100% - 12mm) / 3);
+  flex-shrink: 0;
 }
 
 @media print {
@@ -157,36 +145,13 @@ body {
     background: var(--background);
   }
 
-  :root:has(.carta-print--light) {
-    background: #ffffff;
-  }
-
   .carta-sheet {
     margin: 0;
     box-shadow: none;
-  }
-
-  .carta-cover {
     break-after: page;
   }
 
-  .carta-back {
-    break-before: page;
+  .carta-print > .carta-sheet:last-child {
     break-after: auto;
-  }
-
-  .carta-frame--screen {
-    display: none;
-  }
-
-  .carta-frame--print {
-    display: block;
-    position: fixed;
-  }
-
-  /* "clone" repite el relleno arriba y abajo en cada hoja impresa. */
-  .carta-body {
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
   }
 }
