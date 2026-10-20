@@ -47,10 +47,12 @@ Sin 3D ni más librerías de animación: mantener el stack acotado.
 
 ```
 /app
-  layout.tsx                   → cabecera, pie, textura de fondo y datos estructurados (schema.org Restaurant)
+  layout.tsx                   → html, fuentes y datos estructurados (schema.org Restaurant)
   icon.svg                     → favicon (concha del logo)
-  /(marketing)/page.tsx        → landing
-  /carta/page.tsx              → carta completa, pensada para móvil
+  /(site)/layout.tsx           → cabecera, pie y textura de fondo de la web
+  /(site)/page.tsx             → landing
+  /(site)/carta/page.tsx       → carta completa, pensada para móvil
+  /(impresion)/carta/imprimir/page.tsx → carta física A4 (sin cabecera ni pie), ver abajo
 /components
   /brand/logoPaths.ts          → trazados vectoriales del logo
   /brand/Logo.tsx              → logo ("mark" = concha + icono, "full" = con nombre)
@@ -60,6 +62,7 @@ Sin 3D ni más librerías de animación: mantener el stack acotado.
   /landing/*                   → Hero, IngredientMarquee, DishSpotlight, MenuIndex, VisitSection
   /dish/HotspotPhoto.tsx       → foto con ingredientes tocables (landing y carta)
   /carta/MenuItem.tsx          → fila de plato en /carta (la miniatura despliega la foto)
+  /print/PrintToolbar.tsx      → barra de /carta/imprimir (solo pantalla)
 /data
   dishes.ts                    → array tipado con todos los platos (ver esquema abajo)
   restaurant.ts                → dirección, teléfono, horario, enlaces a Maps
@@ -90,6 +93,10 @@ Categorías y platos tomados de `CARTA CON DESCRIPCION Y ALERGENOS.docx` (la car
 Estado actual: carta completa con precios, descripciones y alérgenos. 22 platos tienen foto real con ingredientes tocables; solo los 5 `featured` salen en la landing, el resto se despliega en /carta.
 
 Fotos: todas con el mismo formato — toma de tres cuartos a la altura de la mesa, plato entero sobre el borde, fondo de madera oscura, sin botellas ni vasos, recorte 4:5 (1200×1500 WebP). Origen: sesión del iPhone (HEIC) y, para el chaufa de mariscos y la parihuela, la Canon (JPG + CR2, solo con ajuste de exposición). Nada de edición generativa.
+
+## Carta impresa
+
+`/carta/imprimir` genera la carta física desde `dishes.ts` y `restaurant.ts`: portada con el logo, platos a dos columnas en A4 (mismo orden, nombres, precios, descripciones y alérgenos que /carta, sin fotos) y horario/contacto al final. Fondo negro a sangre por defecto; `?fondo=claro` para impresora doméstica. Se imprime con el botón de la página o Ctrl+P → "Guardar como PDF" (en Chrome, activar "Gráficos de fondo"). Los estilos de impresión están al final de `app/globals.css`. Tras cambiar la carta, regenerar el PDF: no guardar PDFs en el repo.
 
 ## Datos del restaurante
 
