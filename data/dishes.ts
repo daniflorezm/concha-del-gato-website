@@ -38,6 +38,8 @@ export type DishPhoto = {
   src: string;
   width: number;
   height: number;
+  /** Centro vertical del plato (en % del alto): centra los recortes apaisados de la carta impresa. */
+  centerY?: number;
   hotspots?: IngredientHotspot[];
 };
 
@@ -70,6 +72,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/papa-a-la-huancaina.webp",
       width: 1200,
       height: 1500,
+      centerY: 55,
       hotspots: [
         { label: "Aceituna de botija", x: 41, y: 34 },
         { label: "Salsa huancaína", x: 30, y: 52 },
@@ -99,6 +102,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/leche-de-tigre.webp",
       width: 1200,
       height: 1500,
+      centerY: 48,
       hotspots: [
         { label: "Leche de tigre", x: 45, y: 48 },
         { label: "Chicharrón de pota", x: 57, y: 68 },
@@ -120,6 +124,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/causa-limena.webp",
       width: 1200,
       height: 1500,
+      centerY: 47,
       hotspots: [
         { label: "Camote frito", x: 45, y: 37 },
         { label: "Chifle", x: 65, y: 43 },
@@ -144,6 +149,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/causa-acevichada.webp",
       width: 1200,
       height: 1500,
+      centerY: 50,
       hotspots: [
         { label: "Chifle", x: 37, y: 33 },
         { label: "Camote frito", x: 58, y: 36 },
@@ -167,6 +173,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/tiradito-al-aji-amarillo.webp",
       width: 1200,
       height: 1500,
+      centerY: 55,
       hotspots: [
         { label: "Cancha", x: 22, y: 34 },
         { label: "Camote", x: 9, y: 43 },
@@ -195,6 +202,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/anticucho-mixto-de-rachi-o-librillo.webp",
       width: 1200,
       height: 1500,
+      centerY: 54,
       hotspots: [
         { label: "Corazón a la parrilla", x: 51, y: 54 },
         { label: "Rachi", x: 63, y: 68 },
@@ -242,6 +250,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/ceviche-clasico.webp",
       width: 1200,
       height: 1500,
+      centerY: 60,
       hotspots: [
         { label: "Camote", x: 49, y: 46 },
         { label: "Pescado marinado", x: 38, y: 61 },
@@ -262,6 +271,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/ceviche-mixto.webp",
       width: 1200,
       height: 1500,
+      centerY: 59,
       hotspots: [
         { label: "Concha de abanico", x: 26, y: 52 },
         { label: "Choclo", x: 32, y: 66 },
@@ -282,6 +292,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/ceviche-del-gato.webp",
       width: 1200,
       height: 1500,
+      centerY: 57,
       hotspots: [
         { label: "Conchas negras", x: 47, y: 57 },
         { label: "Chicharrón de pota", x: 77, y: 65 },
@@ -338,6 +349,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/jalea-del-gato.webp",
       width: 1200,
       height: 1500,
+      centerY: 58,
       hotspots: [
         { label: "Dorada frita", x: 17, y: 47 },
         { label: "Mariscos crocantes", x: 59, y: 55 },
@@ -394,6 +406,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/arroz-chaufa-de-mariscos.webp",
       width: 1200,
       height: 1500,
+      centerY: 62,
       hotspots: [
         { label: "Concha de abanico", x: 15, y: 60 },
         { label: "Tortilla de huevo", x: 51, y: 45 },
@@ -477,6 +490,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/parihuela-de-mariscos.webp",
       width: 1200,
       height: 1500,
+      centerY: 60,
       hotspots: [
         { label: "Cangrejo", x: 32, y: 36 },
         { label: "Mariscos", x: 47, y: 57 },
@@ -497,6 +511,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/chupe-de-pescado.webp",
       width: 1200,
       height: 1500,
+      centerY: 55,
       hotspots: [
         { label: "Huevo escalfado", x: 42, y: 61 },
         { label: "Huacatay", x: 49, y: 51 },
@@ -613,6 +628,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/tacu-tacu-mariscos.webp",
       width: 1200,
       height: 1500,
+      centerY: 52,
       hotspots: [
         { label: "Conchas", x: 30, y: 42 },
         { label: "Arvejas", x: 56, y: 42 },
@@ -645,6 +661,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/lomo-saltado.webp",
       width: 1200,
       height: 1500,
+      centerY: 54,
       hotspots: [
         { label: "Papas fritas", x: 15, y: 52 },
         { label: "Cebolla morada", x: 45, y: 48 },
@@ -749,6 +766,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/fetuccini-a-la-huancaina-con-lomo-saltado.webp",
       width: 1200,
       height: 1500,
+      centerY: 57,
       hotspots: [
         { label: "Fetuccini a la huancaína", x: 20, y: 58 },
         { label: "Lomo saltado", x: 73, y: 50 },
@@ -768,6 +786,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/fetuccini-en-salsa-de-langostinos.webp",
       width: 1200,
       height: 1500,
+      centerY: 57,
       hotspots: [
         { label: "Langostinos", x: 52, y: 53 },
         { label: "Fetuccini", x: 33, y: 68 },
@@ -796,6 +815,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/aji-de-gallina.webp",
       width: 1200,
       height: 1500,
+      centerY: 62,
       hotspots: [
         { label: "Arroz blanco", x: 40, y: 47 },
         { label: "Huevo", x: 58, y: 61 },
@@ -816,6 +836,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/seco-de-ternera-a-la-nortena.webp",
       width: 1200,
       height: 1500,
+      centerY: 60,
       hotspots: [
         { label: "Arroz blanco", x: 18, y: 40 },
         { label: "Salsa criolla", x: 47, y: 36 },
@@ -836,6 +857,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/arroz-con-pato.webp",
       width: 1200,
       height: 1500,
+      centerY: 59,
       hotspots: [
         { label: "Pato", x: 18, y: 57 },
         { label: "Arroz verde al culantro", x: 52, y: 44 },
@@ -865,6 +887,7 @@ export const dishes: Dish[] = [
       src: "/images/platos/combinado-criollo.webp",
       width: 1200,
       height: 1500,
+      centerY: 61,
       hotspots: [
         { label: "Ceviche", x: 37, y: 42 },
         { label: "Papa a la huancaína", x: 68, y: 53 },

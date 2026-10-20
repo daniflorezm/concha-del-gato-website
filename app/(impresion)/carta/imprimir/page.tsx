@@ -5,7 +5,7 @@ import { LineTexture } from "@/components/brand/LineTexture";
 import { ROMAN } from "@/components/landing/MenuIndex";
 import { Ornament, PrintFrame } from "@/components/print/PrintFrame";
 import { PrintToolbar } from "@/components/print/PrintToolbar";
-import { categoriesWithDishes, formatPrice } from "@/data/dishes";
+import { categoriesWithDishes, formatPrice, type DishPhoto } from "@/data/dishes";
 import { formatSlots, openingHours, restaurant } from "@/data/restaurant";
 
 export const metadata: Metadata = {
@@ -17,6 +17,17 @@ export const metadata: Metadata = {
 // solo nombre y precio, con foto grande en los platos que la tienen. Las
 // descripciones y alérgenos quedan en la carta digital. "?fondo=claro" da una
 // versión para impresora doméstica.
+const PRINT_PHOTO_RATIO = 4 / 3;
+
+// object-position que deja el centro del plato (photo.centerY) en el centro
+// del recorte 4:3. Solo aplica a fotos más altas que el recorte.
+function photoPosition(photo: DishPhoto) {
+  const visible = photo.width / photo.height / PRINT_PHOTO_RATIO;
+  if (photo.centerY === undefined || visible >= 1) return undefined;
+  const offset = (photo.centerY / 100 - visible / 2) / (1 - visible);
+  return `50% ${Math.min(Math.max(offset, 0), 1) * 100}%`;
+}
+
 export default async function CartaImprimirPage({ searchParams }: PageProps<"/carta/imprimir">) {
   const light = (await searchParams).fondo === "claro";
   const categories = categoriesWithDishes();
@@ -75,6 +86,7 @@ export default async function CartaImprimirPage({ searchParams }: PageProps<"/ca
                             sizes="1000px"
                             loading="eager"
                             className="object-cover"
+                            style={{ objectPosition: photoPosition(dish.photo) }}
                           />
                         </div>
                       )}

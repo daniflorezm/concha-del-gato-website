@@ -83,6 +83,7 @@ type Dish = {
   featured?: boolean;         // sale en la landing ("Cada plato, por dentro")
   photo?: {                   // foto real del plato (WebP en /public/images/platos/)
     src: string; width: number; height: number;
+    centerY?: number;         // centro vertical del plato en % del alto: centra el recorte apaisado de la carta impresa
     hotspots?: { label: string; x: number; y: number }[]; // ingredientes señalados sobre la foto, en % de ancho/alto
   };
 };
@@ -111,6 +112,7 @@ En `data/restaurant.ts`, tomados de la ficha de Google. En Google el lunes apare
 - Zonas táctiles de al menos 44px (enlaces, botones y puntos de ingredientes).
 - Al cambiar una foto con el mismo nombre, borrar `.next/cache/images` o `next/image` seguirá sirviendo la versión anterior en local.
 - Los puntos de ingredientes (`hotspots`) se colocan en % sobre la foto ya recortada: comprobarlos con una captura.
+- Al añadir una foto, darle `centerY` y comprobar su recorte 4:3 en `/carta/imprimir`.
 - Commits frecuentes por unidad de trabajo (por componente o por plato añadido), no un commit gigante al final.
 - Mantener `dishes.ts` y `restaurant.ts` como única fuente de verdad — no hardcodear nombres, precios, horario ni teléfono en componentes.
 - Actualizar este `CLAUDE.md` si cambia el stack, la paleta definitiva, o la convención de carpetas.
