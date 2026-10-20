@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Logo } from "@/components/brand/Logo";
 import { LineTexture } from "@/components/brand/LineTexture";
 import { PrintToolbar } from "@/components/print/PrintToolbar";
@@ -11,7 +12,8 @@ export const metadata: Metadata = {
 };
 
 // Carta física en A4 generada desde dishes.ts: mismo contenido y orden que
-// /carta, sin fotos. "?fondo=claro" da una versión para impresora doméstica.
+// /carta, con la miniatura de cada plato que tiene foto. "?fondo=claro" da una
+// versión para impresora doméstica.
 export default async function CartaImprimirPage({ searchParams }: PageProps<"/carta/imprimir">) {
   const light = (await searchParams).fondo === "claro";
   const categories = categoriesWithDishes();
@@ -53,28 +55,44 @@ export default async function CartaImprimirPage({ searchParams }: PageProps<"/ca
                 {category.dishes.map((dish) => {
                   const price = formatPrice(dish.price);
                   return (
-                    <li key={dish.id} className="carta-dish border-b border-brand-gold/15 py-[2mm] last:border-b-0">
-                      <div className="flex items-baseline gap-[2mm]">
-                        <h3 className="font-display text-[12pt] font-semibold leading-snug text-foreground">
-                          {dish.name}
-                        </h3>
-                        <span className="mb-[1mm] flex-1 border-b border-dotted border-brand-gold/50" />
-                        {price && (
-                          <span className="whitespace-nowrap font-display text-[12pt] font-semibold text-brand-gold">
-                            {price}
-                          </span>
+                    <li key={dish.id} className="carta-dish flex gap-[3mm] border-b border-brand-gold/15 py-[2mm] last:border-b-0">
+                      {dish.photo && (
+                        // Mismo recorte que la miniatura de /carta. "eager": al
+                        // imprimir, las imágenes diferidas pueden no llegar a cargar.
+                        <div className="relative h-[20mm] w-[20mm] shrink-0 overflow-hidden rounded-[3mm] border border-brand-gold/25">
+                          <Image
+                            src={dish.photo.src}
+                            alt=""
+                            fill
+                            sizes="480px"
+                            loading="eager"
+                            className="scale-[1.6] object-cover"
+                          />
+                        </div>
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-baseline gap-[2mm]">
+                          <h3 className="font-display text-[12pt] font-semibold leading-snug text-foreground">
+                            {dish.name}
+                          </h3>
+                          <span className="mb-[1mm] flex-1 border-b border-dotted border-brand-gold/50" />
+                          {price && (
+                            <span className="whitespace-nowrap font-display text-[12pt] font-semibold text-brand-gold">
+                              {price}
+                            </span>
+                          )}
+                        </div>
+                        {dish.description && (
+                          <p className="mt-[0.6mm] text-[8.5pt] leading-[1.35] text-foreground/75">
+                            {dish.description}
+                          </p>
+                        )}
+                        {dish.allergens && (
+                          <p className="mt-[0.4mm] text-[7pt] text-foreground/55">
+                            Alérgenos: {dish.allergens.length ? dish.allergens.join(", ") : "ninguno"}
+                          </p>
                         )}
                       </div>
-                      {dish.description && (
-                        <p className="mt-[0.6mm] text-[8.5pt] leading-[1.35] text-foreground/75">
-                          {dish.description}
-                        </p>
-                      )}
-                      {dish.allergens && (
-                        <p className="mt-[0.4mm] text-[7pt] text-foreground/55">
-                          Alérgenos: {dish.allergens.length ? dish.allergens.join(", ") : "ninguno"}
-                        </p>
-                      )}
                     </li>
                   );
                 })}
