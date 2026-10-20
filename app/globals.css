@@ -81,14 +81,12 @@ body {
 
 /* ---- Carta imprimible (/carta/imprimir) ---- */
 
+/* Sin margen de página: el fondo llega al borde y el marco fijo (que Chrome
+   recorta al área de página) puede ir a 7 mm del papel. */
 @page {
   size: A4;
-  margin: 12mm 0;
-  background: var(--background);
-}
-
-@page :first {
   margin: 0;
+  background: var(--background);
 }
 
 .carta-print {
@@ -111,7 +109,7 @@ body {
 .carta-sheet {
   width: 210mm;
   margin: 10mm auto;
-  padding: 14mm 14mm;
+  padding: 17mm 19mm;
   background: var(--background);
   color: var(--foreground);
   box-shadow: 0 4px 24px rgb(0 0 0 / 0.4);
@@ -119,7 +117,19 @@ body {
 
 .carta-cover {
   height: 297mm;
-  padding: 22mm 18mm 20mm;
+  padding: 26mm 22mm 24mm;
+}
+
+/* Marco: en pantalla, uno por hoja; al imprimir, uno fijo que Chrome repite
+   en cada página. */
+.carta-frame {
+  position: absolute;
+  inset: 7mm;
+  z-index: 1;
+}
+
+.carta-frame--print {
+  display: none;
 }
 
 .carta-columns {
@@ -128,7 +138,7 @@ body {
 }
 
 .carta-category {
-  margin-bottom: 6mm;
+  margin-bottom: 5mm;
 }
 
 .carta-category-title,
@@ -161,10 +171,17 @@ body {
     break-after: page;
   }
 
-  /* El relleno de cada página impresa: margen de @page a 0 para que el
-     fondo negro llegue al borde, y el relleno se repite en cada hoja. */
+  .carta-frame--screen {
+    display: none;
+  }
+
+  .carta-frame--print {
+    display: block;
+    position: fixed;
+  }
+
+  /* "clone" repite el relleno arriba y abajo en cada hoja impresa. */
   .carta-body {
-    padding: 0 14mm;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }

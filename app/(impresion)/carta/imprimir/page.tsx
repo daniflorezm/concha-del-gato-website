@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Logo } from "@/components/brand/Logo";
 import { LineTexture } from "@/components/brand/LineTexture";
+import { ROMAN } from "@/components/landing/MenuIndex";
+import { Ornament, PrintFrame } from "@/components/print/PrintFrame";
 import { PrintToolbar } from "@/components/print/PrintToolbar";
 import { categoriesWithDishes, formatPrice } from "@/data/dishes";
 import { formatSlots, openingHours, restaurant } from "@/data/restaurant";
@@ -22,17 +24,20 @@ export default async function CartaImprimirPage({ searchParams }: PageProps<"/ca
   return (
     <div className={`carta-print ${light ? "carta-print--light" : ""}`}>
       <PrintToolbar light={light} />
+      {/* Al imprimir, este marco se repite en cada hoja (position: fixed). */}
+      <PrintFrame className="carta-frame--print" />
 
       {/* Portada */}
       <section className="carta-sheet carta-cover relative flex flex-col items-center justify-between overflow-hidden text-center">
         <LineTexture className="text-foreground/[0.05]" />
+        <PrintFrame className="carta-frame--screen" />
         <p className="relative text-[9pt] uppercase tracking-[0.4em] text-brand-turquoise">
           Cocina peruana
         </p>
         <div className="relative flex flex-col items-center gap-[10mm]">
           <Logo variant="full" className="w-[120mm]" />
           <h1 className="font-logo text-[44pt] tracking-[0.1em] text-brand-gold">Menú</h1>
-          <span className="h-px w-[30mm] bg-brand-gold" />
+          <Ornament className="w-[60mm]" />
         </div>
         <div className="relative flex flex-col items-center gap-[2mm] text-[9.5pt] text-foreground/70">
           <p>
@@ -43,19 +48,21 @@ export default async function CartaImprimirPage({ searchParams }: PageProps<"/ca
       </section>
 
       {/* Platos: dos columnas que fluyen de una página a otra */}
-      <section className="carta-sheet carta-body">
+      <section className="carta-sheet carta-body relative">
+        <PrintFrame className="carta-frame--screen" />
         <div className="carta-columns">
-          {categories.map((category) => (
+          {categories.map((category, i) => (
             <section key={category.id} className="carta-category">
-              <h2 className="carta-category-title mb-[3mm] flex items-center gap-[3mm] font-display text-[17pt] leading-tight text-brand-gold">
-                {category.label}
-                <span className="h-px flex-1 bg-brand-gold/40" />
-              </h2>
+              <header className="carta-category-title mb-[2mm] flex flex-col items-center text-center text-brand-gold">
+                <span className="font-logo text-[8pt] tracking-[0.3em] opacity-70">{ROMAN[i]}</span>
+                <h2 className="font-display text-[16pt] leading-tight">{category.label}</h2>
+                <Ornament className="mt-[1mm] w-[45mm]" />
+              </header>
               <ul>
                 {category.dishes.map((dish) => {
                   const price = formatPrice(dish.price);
                   return (
-                    <li key={dish.id} className="carta-dish flex gap-[3mm] border-b border-brand-gold/15 py-[2mm] last:border-b-0">
+                    <li key={dish.id} className="carta-dish flex gap-[3mm] border-b border-brand-gold/15 py-[1.7mm] last:border-b-0">
                       {dish.photo && (
                         // Mismo recorte que la miniatura de /carta. "eager": al
                         // imprimir, las imágenes diferidas pueden no llegar a cargar.
@@ -101,7 +108,8 @@ export default async function CartaImprimirPage({ searchParams }: PageProps<"/ca
           ))}
         </div>
 
-        <footer className="carta-footer mt-[8mm] flex flex-col items-center gap-[2.5mm] border-t border-brand-gold/30 pt-[5mm] text-center text-[8pt] text-foreground/65">
+        <footer className="carta-footer mt-[8mm] flex flex-col items-center gap-[2.5mm] text-center text-[8pt] text-foreground/65">
+          <Ornament className="mb-[2mm] w-[80mm]" />
           <p>
             Los alérgenos marcados con * pueden variar según la elaboración. Si tienes alguna
             alergia o intolerancia, avísanos antes de pedir.
