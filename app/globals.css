@@ -125,17 +125,10 @@ body {
   padding: 26mm 22mm 24mm;
 }
 
-.carta-frame {
-  position: absolute;
-  inset: 7mm;
-  z-index: 1;
-}
-
-/* Tres fichas por fila (6 mm de separación); las filas incompletas se
-   centran con justify-content. */
-.carta-card {
-  width: calc((100% - 12mm) / 3);
-  flex-shrink: 0;
+/* Hoja de platos: arriba deja sitio al escudo del logo (PrintPages cuenta
+   con estas medidas). */
+.carta-page {
+  padding: 40mm 19mm 14mm;
 }
 
 @media print {

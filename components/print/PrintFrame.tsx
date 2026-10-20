@@ -1,31 +1,67 @@
-// Marco dorado de la carta impresa: filete doble con esquinas en arco
-// rematadas con un rombo. Unidades del SVG en mm.
-function Corner({ className }: { className: string }) {
+import { Logo } from "@/components/brand/Logo";
+import { LineTexture } from "@/components/brand/LineTexture";
+
+// Medidas de la hoja A4 y del marco, en mm.
+const PAGE_W = 210;
+const PAGE_H = 297;
+const INSET = 7;
+const CORNER = 15;
+
+// Marco dorado de la carta impresa, como el de la carta del restaurante: una
+// línea con las esquinas curvadas hacia dentro. Dibujado a tamaño real (en
+// mm), solo para hojas A4 de alto fijo.
+export function PrintFrame() {
+  const w = PAGE_W - INSET * 2;
+  const h = PAGE_H - INSET * 2;
+  const r = CORNER;
+  const d = [
+    `M${r} 0 H${w - r}`,
+    `A${r} ${r} 0 0 0 ${w} ${r}`,
+    `V${h - r}`,
+    `A${r} ${r} 0 0 0 ${w - r} ${h}`,
+    `H${r}`,
+    `A${r} ${r} 0 0 0 0 ${h - r}`,
+    `V${r}`,
+    `A${r} ${r} 0 0 0 ${r} 0`,
+    "Z",
+  ].join(" ");
   return (
-    <svg viewBox="0 0 16 16" className={`absolute h-[16mm] w-[16mm] ${className}`} aria-hidden>
-      {/* Tapa el filete interior en la esquina para dibujar el arco encima. */}
-      <rect x="1.1" y="1.1" width="8.1" height="8.1" fill="var(--background)" />
-      <g fill="none" stroke="var(--color-brand-gold)" strokeWidth="0.25">
-        <path d="M1.6 9.2 A7.6 7.6 0 0 0 9.2 1.6" />
-        <path d="M1.6 12 A10.4 10.4 0 0 0 12 1.6" strokeWidth="0.15" />
-      </g>
-      <g fill="var(--color-brand-gold)">
-        <path d="M4.2 2.4 L6 4.2 L4.2 6 L2.4 4.2 Z" />
-        <circle cx="7.2" cy="7.2" r="0.45" />
-      </g>
+    <svg
+      viewBox={`-1 -1 ${w + 2} ${h + 2}`}
+      className="pointer-events-none absolute z-[1]"
+      style={{ left: `${INSET - 1}mm`, top: `${INSET - 1}mm`, width: `${w + 2}mm`, height: `${h + 2}mm` }}
+      aria-hidden
+    >
+      <path d={d} fill="none" stroke="var(--color-brand-gold)" strokeWidth="0.7" />
     </svg>
   );
 }
 
-export function PrintFrame({ className = "" }: { className?: string }) {
+/** Escudo con el logo que cuelga del borde superior y corta el marco. */
+export function PrintBadge() {
   return (
-    <div className={`carta-frame pointer-events-none ${className}`} aria-hidden>
-      <div className="absolute inset-0 border-[0.5mm] border-brand-gold" />
-      <div className="absolute inset-[1.6mm] border-[0.25mm] border-brand-gold" />
-      <Corner className="left-0 top-0" />
-      <Corner className="right-0 top-0 -scale-x-100" />
-      <Corner className="bottom-0 left-0 -scale-y-100" />
-      <Corner className="bottom-0 right-0 -scale-100" />
+    <div className="absolute left-1/2 top-0 z-[2] h-[36mm] w-[40mm] -translate-x-1/2" aria-hidden>
+      <svg viewBox="0 0 40 36" className="absolute inset-0 h-full w-full">
+        <path
+          d="M0.4 0 V27 L20 35.4 L39.6 27 V0"
+          fill="var(--background)"
+          stroke="var(--color-brand-gold)"
+          strokeWidth="0.7"
+        />
+      </svg>
+      <Logo variant="full" className="absolute left-1/2 top-[2mm] w-[30mm] -translate-x-1/2" />
+    </div>
+  );
+}
+
+/** Dibujos de cubiertos y verduras a línea, difuminados hacia arriba, al pie de la hoja. */
+export function PrintFootArt() {
+  return (
+    <div
+      className="pointer-events-none absolute inset-x-[7mm] bottom-[7mm] h-[50mm] overflow-hidden [mask-image:linear-gradient(to_top,black,transparent)]"
+      aria-hidden
+    >
+      <LineTexture className="text-foreground/[0.22]" />
     </div>
   );
 }

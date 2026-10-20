@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { PrintFrame } from "@/components/print/PrintFrame";
+import { PrintBadge, PrintFootArt, PrintFrame } from "@/components/print/PrintFrame";
 
-// Alto útil de una hoja A4 (297 mm menos 17 mm de relleno arriba y abajo) y
-// separación mínima entre bloques.
-const PAGE_CONTENT_MM = 263;
-const MIN_GAP_MM = 6;
+// Alto útil de una hoja de platos (297 mm menos el relleno de .carta-page:
+// 40 mm arriba, bajo el escudo, y 14 mm abajo) y separación mínima entre
+// bloques.
+const PAGE_CONTENT_MM = 243;
+const MIN_GAP_MM = 8;
 const PX_PER_MM = 96 / 25.4;
 
 /**
@@ -64,8 +65,7 @@ export function PrintPages({ blocks }: { blocks: ReactNode[] }) {
   if (!pages) {
     return (
       <section className="carta-sheet relative">
-        <PrintFrame />
-        <div ref={measureRef} className="flex flex-col gap-[6mm]">
+        <div ref={measureRef} className="flex flex-col gap-[8mm]">
           {blocks}
         </div>
       </section>
@@ -76,7 +76,9 @@ export function PrintPages({ blocks }: { blocks: ReactNode[] }) {
     <div data-paginated>
       {pages.map((page) => (
         <section key={page[0]} className="carta-sheet carta-page relative flex flex-col justify-evenly">
+          <PrintFootArt />
           <PrintFrame />
+          <PrintBadge />
           {page.map((index) => blocks[index])}
         </section>
       ))}

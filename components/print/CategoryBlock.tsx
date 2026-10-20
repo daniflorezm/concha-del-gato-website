@@ -1,11 +1,10 @@
 import Image from "next/image";
-import { Ornament } from "@/components/print/PrintFrame";
 import { formatPrice, type Dish, type DishPhoto } from "@/data/dishes";
 
-const PHOTO_RATIO = 4 / 3;
+const PHOTO_RATIO = 3 / 2;
 
 // object-position que deja el centro del plato (photo.centerY) en el centro
-// del recorte 4:3. Solo aplica a fotos más altas que el recorte.
+// del recorte apaisado. Solo aplica a fotos más altas que el recorte.
 function photoPosition(photo: DishPhoto) {
   const visible = photo.width / photo.height / PHOTO_RATIO;
   if (photo.centerY === undefined || visible >= 1) return undefined;
@@ -13,96 +12,126 @@ function photoPosition(photo: DishPhoto) {
   return `50% ${Math.min(Math.max(offset, 0), 1) * 100}%`;
 }
 
-const nameClass = "font-display text-[12pt] font-semibold leading-tight text-foreground";
-const priceClass = "whitespace-nowrap font-display text-[12pt] font-semibold text-brand-gold";
+// Altura aproximada (mm) de cada parte, para partir las categorías que no
+// caben en una hoja. El reparto final en hojas se hace midiendo.
+const TITLE_MM = 18;
+const PHOTO_ROW_MM = 54;
+const TEXT_ROW_MM = 11;
+const MAX_BLOCK_MM = 236;
 
-/** Ficha de plato con foto: foto 4:3, nombre y precio centrados debajo. */
-function DishCard({ dish, photo }: { dish: Dish; photo: DishPhoto }) {
+export type PrintPart = { photos: Dish[]; texts: Dish[] };
+
+const pairs = <T,>(items: T[]) =>
+  Array.from({ length: Math.ceil(items.length / 2) }, (_, i) => items.slice(i * 2, i * 2 + 2));
+
+/**
+ * Separa los platos de una categoría en los que llevan foto y los que no, y
+ * si no caben en una hoja los reparte en tramos: primero filas de fotos y
+ * después filas de texto, sin mezclar ni cambiar el orden dentro de cada grupo.
+ */
+export function splitForPrint(dishes: Dish[]): PrintPart[] {
+  const photoRows = pairs(dishes.filter((dish) => dish.photo));
+  const textRows = pairs(dishes.filter((dish) => !dish.photo));
+  const parts: PrintPart[] = [];
+  let current: PrintPart = { photos: [], texts: [] };
+  let height = TITLE_MM;
+  const push = (rowHeight: number, add: () => void) => {
+    if (height + rowHeight > MAX_BLOCK_MM && (current.photos.length || current.texts.length)) {
+      parts.push(current);
+      current = { photos: [], texts: [] };
+      height = TITLE_MM;
+    }
+    add();
+    height += rowHeight;
+  };
+  photoRows.forEach((row) => push(PHOTO_ROW_MM, () => current.photos.push(...row)));
+  textRows.forEach((row) => push(TEXT_ROW_MM, () => current.texts.push(...row)));
+  parts.push(current);
+  return parts;
+}
+
+function DishName({ dish }: { dish: Dish }) {
   return (
-    <li className="carta-card flex flex-col items-center text-center">
+    <>
+      <h3 className="font-logo text-[10.5pt] font-medium uppercase leading-snug tracking-[0.05em] text-foreground">
+        {dish.name}
+      </h3>
+      {dish.price !== null && (
+        <span className="mt-[0.6mm] text-[9pt] font-medium tracking-[0.12em] text-brand-gold">
+          {formatPrice(dish.price)}
+        </span>
+      )}
+    </>
+  );
+}
+
+function PhotoEntry({ dish }: { dish: Dish }) {
+  if (!dish.photo) return null;
+  return (
+    <div className="flex flex-col items-center px-[4mm] py-[2.5mm] text-center">
+      {/* Nombre pegado a la foto: si en la pareja un nombre ocupa dos líneas,
+          las fotos siguen a la misma altura. */}
+      <div className="flex flex-1 flex-col items-center justify-end">
+        <DishName dish={dish} />
+      </div>
       {/* "eager": al imprimir, las imágenes diferidas pueden no llegar a cargar. */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2.5mm] border border-brand-gold/40">
+      <div className="relative mt-[2.5mm] aspect-[3/2] w-[55mm] overflow-hidden rounded-[3mm] border border-brand-gold/25">
         <Image
-          src={photo.src}
+          src={dish.photo.src}
           alt=""
           fill
           sizes="700px"
           loading="eager"
           className="object-cover"
-          style={{ objectPosition: photoPosition(photo) }}
+          style={{ objectPosition: photoPosition(dish.photo) }}
         />
       </div>
-      <h3 className={`mt-[2mm] ${nameClass}`}>{dish.name}</h3>
-      {dish.price !== null && <span className={`mt-[0.5mm] ${priceClass}`}>{formatPrice(dish.price)}</span>}
-    </li>
+    </div>
   );
 }
 
-/** Platos sin foto: nombre, línea de puntos y precio, en filas iguales. */
-function DishList({ dishes, columns }: { dishes: Dish[]; columns: 1 | 2 }) {
-  return (
-    <ul
-      className={`grid grid-flow-col gap-x-[10mm] ${columns === 2 ? "grid-cols-2" : "grid-cols-1"}`}
-      style={{ gridTemplateRows: `repeat(${Math.ceil(dishes.length / columns)}, auto)` }}
-    >
-      {dishes.map((dish) => (
-        <li key={dish.id} className="flex items-baseline gap-[2mm] border-b border-brand-gold/15 py-[1.1mm]">
-          <h3 className={nameClass}>{dish.name}</h3>
-          <span className="mb-[1mm] min-w-[6mm] flex-1 border-b border-dotted border-brand-gold/50" />
-          {dish.price !== null && <span className={priceClass}>{formatPrice(dish.price)}</span>}
-        </li>
-      ))}
-    </ul>
-  );
-}
+const rowClass = "grid grid-cols-2 [&>*+*]:border-l [&>*+*]:border-brand-gold/45";
 
-type CategoryBlockProps = {
-  numeral: string;
-  label: string;
-  dishes: Dish[];
-};
-
-// Bloque de una categoría con una de dos composiciones fijas:
-// - una sola foto: la ficha a la izquierda y la lista al lado;
-// - varias fotos: fichas de tres en tres (última fila centrada) y la lista
-//   a dos columnas debajo.
-export function CategoryBlock({ numeral, label, dishes }: CategoryBlockProps) {
-  const withPhoto = dishes.flatMap((dish) => (dish.photo ? [{ dish, photo: dish.photo }] : []));
-  const listed = dishes.filter((dish) => !dish.photo);
-
+// Una categoría con el estilo de la carta del restaurante: título grande en
+// cursiva con líneas doradas y los platos centrados en dos columnas separadas
+// por una línea dorada. Primero las fotos, por parejas alineadas (si sobra
+// una, va centrada); debajo, el resto de platos en dos columnas.
+export function CategoryBlock({ label, part }: { label: string; part: PrintPart }) {
+  const half = Math.ceil(part.texts.length / 2);
+  const textColumns = part.texts.length > 1 ? [part.texts.slice(0, half), part.texts.slice(half)] : [part.texts];
   return (
     <section className="carta-category">
-      <header className="mb-[4mm] flex flex-col items-center text-center text-brand-gold">
-        <span className="font-logo text-[8pt] tracking-[0.3em] opacity-70">{numeral}</span>
-        <h2 className="font-display text-[17pt] leading-tight">{label}</h2>
-        <Ornament className="mt-[1mm] w-[50mm]" />
+      <header className="mb-[3mm] flex items-center gap-[4mm]">
+        <span className="h-[0.35mm] min-w-[10mm] flex-1 bg-gradient-to-l from-brand-gold to-transparent" />
+        <h2 className="text-center font-display text-[24pt] font-semibold uppercase italic leading-none text-foreground">
+          {label}
+        </h2>
+        <span className="h-[0.35mm] min-w-[10mm] flex-1 bg-gradient-to-r from-brand-gold to-transparent" />
       </header>
 
-      {withPhoto.length === 1 && listed.length > 0 ? (
-        <div className="flex items-center gap-[8mm]">
-          <ul className="contents">
-            <DishCard dish={withPhoto[0].dish} photo={withPhoto[0].photo} />
-          </ul>
-          <div className="flex-1">
-            <DishList dishes={listed} columns={1} />
+      {pairs(part.photos).map((row) =>
+        row.length === 2 ? (
+          <div key={row[0].id} className={rowClass}>
+            <PhotoEntry dish={row[0]} />
+            <PhotoEntry dish={row[1]} />
           </div>
-        </div>
-      ) : (
-        <>
-          {withPhoto.length > 0 && (
-            <ul className="flex flex-wrap justify-center gap-x-[6mm] gap-y-[5mm]">
-              {withPhoto.map(({ dish, photo }) => (
-                <DishCard key={dish.id} dish={dish} photo={photo} />
+        ) : (
+          <PhotoEntry key={row[0].id} dish={row[0]} />
+        ),
+      )}
+
+      {part.texts.length > 0 && (
+        <div className={textColumns.length === 2 ? `${rowClass} mt-[1mm]` : "mt-[1mm]"}>
+          {textColumns.map((column, i) => (
+            <ul key={i} className="flex flex-col">
+              {column.map((dish) => (
+                <li key={dish.id} className="flex flex-col items-center px-[4mm] py-[1.3mm] text-center">
+                  <DishName dish={dish} />
+                </li>
               ))}
             </ul>
-          )}
-          {listed.length > 0 && (
-            // Un único plato va centrado, con el ancho de una columna.
-            <div className={`${withPhoto.length > 0 ? "mt-[5mm]" : ""} ${listed.length === 1 ? "mx-auto w-[calc((100%-10mm)/2)]" : ""}`}>
-              <DishList dishes={listed} columns={listed.length === 1 ? 1 : 2} />
-            </div>
-          )}
-        </>
+          ))}
+        </div>
       )}
     </section>
   );

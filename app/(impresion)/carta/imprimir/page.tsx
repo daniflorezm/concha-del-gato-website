@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Logo } from "@/components/brand/Logo";
 import { LineTexture } from "@/components/brand/LineTexture";
-import { ROMAN } from "@/components/landing/MenuIndex";
-import { CategoryBlock } from "@/components/print/CategoryBlock";
-import { Ornament, PrintFrame } from "@/components/print/PrintFrame";
+import { CategoryBlock, splitForPrint } from "@/components/print/CategoryBlock";
+import { Ornament, PrintFootArt, PrintFrame } from "@/components/print/PrintFrame";
 import { PrintPages } from "@/components/print/PrintPages";
 import { PrintToolbar } from "@/components/print/PrintToolbar";
 import { categoriesWithDishes } from "@/data/dishes";
@@ -47,17 +46,19 @@ export default async function CartaImprimirPage({ searchParams }: PageProps<"/ca
         </div>
       </section>
 
-      {/* Platos: cada categoría es un bloque entero que PrintPages coloca en
-          las hojas. */}
+      {/* Platos: cada categoría (o cada tramo, si no cabe en una hoja) es un
+          bloque que PrintPages coloca entero en las hojas. */}
       <PrintPages
-        blocks={categories.map((category, i) => (
-          <CategoryBlock key={category.id} numeral={ROMAN[i]} label={category.label} dishes={category.dishes} />
-        ))}
+        blocks={categories.flatMap((category) =>
+          splitForPrint(category.dishes).map((part, i) => (
+            <CategoryBlock key={`${category.id}-${i}`} label={category.label} part={part} />
+          )),
+        )}
       />
 
       {/* Contraportada */}
       <section className="carta-sheet carta-cover relative flex flex-col items-center justify-center gap-[10mm] overflow-hidden text-center">
-        <LineTexture className="text-foreground/[0.05]" />
+        <PrintFootArt />
         <PrintFrame />
         <div className="relative flex flex-col items-center gap-[4mm]">
           <Logo className="h-[28mm] w-[32mm]" />
