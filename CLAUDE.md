@@ -87,9 +87,11 @@ type Dish = {
 
 Categorías y platos tomados de `CARTA CON DESCRIPCION Y ALERGENOS.docx` (la carta vigente): Entradas, Ceviches, Los Crocantes, Arroces Criollos y Marinos, Nuestras Sopas, Dúos/Tríos/Barcos Marinos, Los Tacu Tacus, Criollos y Especiales de la Casa, Brasas y Broasters, Fast Food, Guarniciones y Bebidas y Licores (~98 entradas). El sitio es **data-driven**: se itera `dishes.ts` sobre `MenuItem` / `DishSpotlight`; las categorías sin platos no se muestran.
 
-Estado actual: carta completa con precios, descripciones y alérgenos. 22 platos tienen foto real con ingredientes tocables; solo los 5 `featured` salen en la landing, el resto se despliega en /carta.
+Estado actual: carta completa con precios, descripciones y alérgenos. Todos los platos (no bebidas ni guarniciones) tienen foto; solo los 5 `featured` salen en la landing, el resto se despliega en /carta. 22 son fotos propias del restaurante; el resto son fotos provisionales sacadas de internet (ver abajo) hasta que haya foto propia.
 
 Fotos: todas con el mismo formato — toma de tres cuartos a la altura de la mesa, plato entero sobre el borde, fondo de madera oscura, sin botellas ni vasos, recorte 4:5 (1200×1500 WebP). Origen: sesión del iPhone (HEIC) y, para el chaufa de mariscos y la parihuela, la Canon (JPG + CR2, solo con ajuste de exposición). Nada de edición generativa.
+
+Fotos provisionales de internet (decisión del cliente): los demás platos usan fotos de Wikimedia Commons recortadas a 4:5 (1200×1500 WebP), sin crédito visible en la web. «Arma tu Dúo» y los dos «Barco Marino» son composiciones de fotos propias de la casa. Algunos platos comparten foto con otro parecido (p. ej. tacu tacus). Cuando haya foto propia de un plato, sustituir el archivo con el mismo nombre y recolocar sus `hotspots`. Solo llevan ingredientes tocables las fotos con varios componentes distinguibles.
 
 ## Datos del restaurante
 
