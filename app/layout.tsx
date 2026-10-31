@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Cinzel, Cormorant_Garamond, Geist } from "next/font/google";
+import { Cormorant_Garamond, Geist } from "next/font/google";
+import localFont from "next/font/local";
 import { LineTexture } from "@/components/brand/LineTexture";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -12,10 +13,13 @@ const geistSans = Geist({
 });
 
 // Cinzel: la misma familia de mayúsculas clásicas del rótulo del logo.
-const cinzel = Cinzel({
+// Va en local (fuente variable, subconjunto latino de Google Fonts) porque
+// next/font/google no consigue procesarla en el build de Vercel.
+const cinzel = localFont({
+  src: "./fonts/cinzel-latin.woff2",
   variable: "--font-cinzel",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: "400 900",
+  display: "swap",
 });
 
 const cormorant = Cormorant_Garamond({
