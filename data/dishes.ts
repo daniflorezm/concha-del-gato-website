@@ -86,15 +86,6 @@ export const dishes: Dish[] = [
     description:
       "Crujientes yucas fritas acompañadas de nuestra cremosa salsa huancaína.",
     allergens: ["leche", "huevo"],
-    photo: {
-      src: "/images/platos/yuquitas-fritas-con-huancaina.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Yuca frita", x: 55, y: 20 },
-        { label: "Salsa huancaína", x: 30, y: 65 },
-      ],
-    },
   },
   {
     id: "leche-de-tigre",
@@ -191,16 +182,6 @@ export const dishes: Dish[] = [
     price: 12,
     description:
       "Pinchos de corazón de ternera marinado en salsa anticuchera, acompañados de papas doradas, choclo y salsa de huancaína.",
-    photo: {
-      src: "/images/platos/anticucho-clasico.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Choclo", x: 40, y: 22 },
-        { label: "Papa dorada", x: 85, y: 15 },
-        { label: "Corazón de ternera", x: 45, y: 55 },
-      ],
-    },
   },
   {
     id: "anticucho-mixto-de-rachi-o-librillo",
@@ -230,17 +211,6 @@ export const dishes: Dish[] = [
     description:
       "Rachi o librillo de ternera, sazonado en salsa anticuchera y preparado a la parrilla, acompañado de papas doradas, choclo y salsas.",
     allergens: [],
-    photo: {
-      src: "/images/platos/porcion-de-rachi-o-librillo.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Salsas", x: 45, y: 25 },
-        { label: "Rachi a la parrilla", x: 25, y: 50 },
-        { label: "Choclo", x: 85, y: 45 },
-        { label: "Papa dorada", x: 55, y: 65 },
-      ],
-    },
   },
   {
     id: "conchas-a-la-chalaca-8-uds",
@@ -250,16 +220,6 @@ export const dishes: Dish[] = [
     description:
       "Frescas conchas de abanico marinadas con cebolla, tomate, maíz, cilantro, ají limo y limón.",
     allergens: ["moluscos"],
-    photo: {
-      src: "/images/platos/conchas-a-la-chalaca-8-uds.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Chalaca: cebolla, tomate y maíz", x: 35, y: 40 },
-        { label: "Concha", x: 40, y: 63 },
-        { label: "Limón", x: 95, y: 45 },
-      ],
-    },
   },
   {
     id: "choritos-a-la-chalaca-12-uds",
@@ -274,9 +234,9 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Ají", x: 55, y: 35 },
-        { label: "Chalaca: cebolla, tomate y maíz", x: 75, y: 55 },
-        { label: "Mejillón", x: 25, y: 78 },
+        { label: "Mejillón", x: 75, y: 45 },
+        { label: "Chalaca: cebolla, tomate y maíz", x: 63, y: 76 },
+        { label: "Lechuga", x: 50, y: 53 },
       ],
     },
   },
@@ -353,8 +313,10 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Conchas negras", x: 20, y: 45 },
-        { label: "Limón", x: 45, y: 40 },
+        { label: "Conchas negras", x: 53, y: 44 },
+        { label: "Ají limo", x: 51, y: 32 },
+        { label: "Chicharrón de calamar", x: 18, y: 62 },
+        { label: "Maíz", x: 88, y: 64 },
       ],
     },
   },
@@ -366,11 +328,6 @@ export const dishes: Dish[] = [
     description:
       "Crujientes trozos de pescado dorados acompañados de yuca frita, salsa criolla y salsa tártara.",
     allergens: ["pescado", "gluten*"],
-    photo: {
-      src: "/images/platos/chicharron-de-pescado.webp",
-      width: 1200,
-      height: 1500,
-    },
   },
   {
     id: "chicharron-de-pota",
@@ -380,11 +337,6 @@ export const dishes: Dish[] = [
     description:
       "Crujientes tiras de pota doradas, acompañadas de yuca frita, salsa criolla y salsa tártara.",
     allergens: ["moluscos", "gluten*"],
-    photo: {
-      src: "/images/platos/chicharron-de-pota.webp",
-      width: 1200,
-      height: 1500,
-    },
   },
   {
     id: "jalea-mixta",
@@ -394,16 +346,6 @@ export const dishes: Dish[] = [
     description:
       "Crocantes trozos de pescado, mariscos y conchas de abanico, acompañada de yuca frita y coronado con salsa criolla y salsa tártara.",
     allergens: ["pescado", "crustáceos", "moluscos", "gluten", "huevo"],
-    photo: {
-      src: "/images/platos/jalea-mixta.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Salsa criolla", x: 75, y: 30 },
-        { label: "Pescado y mariscos fritos", x: 50, y: 60 },
-        { label: "Yuca frita", x: 5, y: 50 },
-      ],
-    },
   },
   {
     id: "jalea-del-gato",
@@ -433,16 +375,6 @@ export const dishes: Dish[] = [
     description:
       "Dorada frita hasta quedar crujiente, acompañada de yuca, salsa criolla y guarnición de arroz blanco.",
     allergens: ["pescado"],
-    photo: {
-      src: "/images/platos/pescado-frito.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Pescado frito", x: 50, y: 45 },
-        { label: "Cebolla", x: 20, y: 85 },
-        { label: "Limón", x: 55, y: 92 },
-      ],
-    },
   },
   {
     id: "arroz-chaufa-de-pollo",
@@ -452,11 +384,6 @@ export const dishes: Dish[] = [
     description:
       "Arroz salteado al wok con pollo, huevo, cebolla china y salsa de soja.",
     allergens: ["soja", "huevo"],
-    photo: {
-      src: "/images/platos/arroz-chaufa-de-pollo.webp",
-      width: 1200,
-      height: 1500,
-    },
   },
   {
     id: "arroz-chaufa-de-ternera",
@@ -466,11 +393,6 @@ export const dishes: Dish[] = [
     description:
       "Arroz salteado al wok con ternera, huevo, cebolla china y salsa de soja.",
     allergens: ["soja", "huevo"],
-    photo: {
-      src: "/images/platos/arroz-chaufa-de-ternera.webp",
-      width: 1200,
-      height: 1500,
-    },
   },
   {
     id: "arroz-chaufa-mixto",
@@ -480,11 +402,6 @@ export const dishes: Dish[] = [
     description:
       "Arroz salteado con pollo, ternera, huevo, cebolla china y salsa de soja.",
     allergens: ["soja", "huevo"],
-    photo: {
-      src: "/images/platos/arroz-chaufa-mixto.webp",
-      width: 1200,
-      height: 1500,
-    },
   },
   {
     id: "arroz-chaufa-de-mariscos",
@@ -514,16 +431,6 @@ export const dishes: Dish[] = [
     description:
       "Arroz salteado con langostinos, huevo, cebolla china y salsa de soja.",
     allergens: ["crustáceos", "soja", "huevo"],
-    photo: {
-      src: "/images/platos/arroz-chaufa-de-langostinos.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Langostinos", x: 45, y: 22 },
-        { label: "Arroz chaufa", x: 50, y: 55 },
-        { label: "Plátano frito", x: 25, y: 90 },
-      ],
-    },
   },
   {
     id: "aeropuerto-de-pollo",
@@ -537,6 +444,12 @@ export const dishes: Dish[] = [
       src: "/images/platos/aeropuerto-de-pollo.webp",
       width: 1200,
       height: 1500,
+      hotspots: [
+        { label: "Wantán frito", x: 36, y: 16 },
+        { label: "Arroz chaufa", x: 58, y: 36 },
+        { label: "Cebolla china", x: 20, y: 32 },
+        { label: "Tallarín", x: 36, y: 64 },
+      ],
     },
   },
   {
@@ -552,10 +465,10 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Mejillón", x: 62, y: 8 },
-        { label: "Langostino", x: 60, y: 37 },
-        { label: "Calamar", x: 35, y: 60 },
-        { label: "Arroz", x: 55, y: 82 },
+        { label: "Concha de abanico", x: 48, y: 28 },
+        { label: "Langostino", x: 12, y: 48 },
+        { label: "Mejillón", x: 82, y: 51 },
+        { label: "Arroz", x: 44, y: 68 },
       ],
     },
   },
@@ -567,11 +480,6 @@ export const dishes: Dish[] = [
     description:
       "Arroz cremoso con langostinos, salsa madre de la casa, ajíes y punto especial de quesos. Acompañado de salsa criolla.",
     allergens: ["crustáceos"],
-    photo: {
-      src: "/images/platos/arroz-con-langostinos.webp",
-      width: 1200,
-      height: 1500,
-    },
   },
   {
     id: "caldo-de-gallina",
@@ -581,16 +489,6 @@ export const dishes: Dish[] = [
     description:
       "Tradicional y concentrado caldo peruano de gallina con fideos, huevo y papa, acompañados de cebolla china.",
     allergens: ["gluten", "huevo"],
-    photo: {
-      src: "/images/platos/caldo-de-gallina.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Gallina", x: 40, y: 35 },
-        { label: "Huevo", x: 70, y: 40 },
-        { label: "Fideos", x: 40, y: 70 },
-      ],
-    },
   },
   {
     id: "caldo-de-mote",
@@ -604,11 +502,6 @@ export const dishes: Dish[] = [
       src: "/images/platos/caldo-de-mote.webp",
       width: 1200,
       height: 1500,
-      hotspots: [
-        { label: "Pata de res", x: 35, y: 32 },
-        { label: "Mondongo", x: 22, y: 62 },
-        { label: "Mote", x: 60, y: 58 },
-      ],
     },
   },
   {
@@ -624,10 +517,10 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Arroz blanco", x: 50, y: 18 },
-        { label: "Pescado", x: 85, y: 45 },
-        { label: "Tomate y cebolla", x: 45, y: 45 },
-        { label: "Yuca", x: 55, y: 70 },
+        { label: "Pescado", x: 66, y: 24 },
+        { label: "Tomate", x: 40, y: 34 },
+        { label: "Papa", x: 55, y: 48 },
+        { label: "Langostino", x: 15, y: 25 },
       ],
     },
   },
@@ -678,16 +571,6 @@ export const dishes: Dish[] = [
     description:
       "Sopa tradicional peruana hecha con langostinos, pasta de ají amarillo, queso, leche, papa, arroz, guisantes, huevo escalfado y saborizado con huacatay.",
     allergens: ["crustáceos", "leche", "huevo"],
-    photo: {
-      src: "/images/platos/chupe-de-langostinos.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Queso", x: 30, y: 30 },
-        { label: "Langostinos", x: 52, y: 58 },
-        { label: "Caldo de ají amarillo", x: 40, y: 85 },
-      ],
-    },
   },
   {
     id: "arma-tu-duo",
@@ -702,8 +585,9 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Ceviche", x: 50, y: 30 },
-        { label: "Jalea", x: 50, y: 78 },
+        { label: "Ceviche", x: 45, y: 17 },
+        { label: "Chifles", x: 70, y: 7 },
+        { label: "Arroz con mariscos", x: 50, y: 69 },
       ],
     },
   },
@@ -744,10 +628,10 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Ceviche clásico", x: 25, y: 25 },
-        { label: "Tiradito al ají amarillo", x: 75, y: 25 },
-        { label: "Chaufa de mariscos", x: 25, y: 80 },
-        { label: "Jalea mixta", x: 75, y: 78 },
+        { label: "Arroz con mariscos", x: 78, y: 9 },
+        { label: "Chicharrón de pescado", x: 30, y: 27 },
+        { label: "Leche de tigre", x: 50, y: 50 },
+        { label: "Causa", x: 30, y: 61 },
       ],
     },
   },
@@ -759,17 +643,6 @@ export const dishes: Dish[] = [
     description:
       "Nuestra selección especial con ceviche clásico, tiradito de ají amarillo, ceviche de conchas negras, arroz con mariscos, chaufa de mariscos, causa de pollo, chicharrón de pescado, jalea mixta y leche de tigre. Incluye 4 chops de pisco sour, 2 cervezas o gaseosas y 1 tinto de verano. Preguntar por nombre.",
     allergens: ["pescado", "crustáceos", "moluscos", "leche", "huevo", "gluten", "soja*"],
-    photo: {
-      src: "/images/platos/barco-marino-del-gato.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Ceviche", x: 25, y: 30 },
-        { label: "Leche de tigre", x: 75, y: 25 },
-        { label: "Causa", x: 25, y: 75 },
-        { label: "Chaufa de mariscos", x: 75, y: 80 },
-      ],
-    },
   },
   {
     id: "tacu-tacu-con-lomo-saltado",
@@ -779,17 +652,6 @@ export const dishes: Dish[] = [
     description:
       "Cremosa mezcla de frejoles y arroz cocido, dorado y roleado en sartén, con lomo saltado.",
     allergens: ["soja*"],
-    photo: {
-      src: "/images/platos/tacu-tacu-con-lomo-saltado.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Huevo frito", x: 60, y: 15 },
-        { label: "Tacu tacu", x: 75, y: 40 },
-        { label: "Lomo saltado", x: 25, y: 50 },
-        { label: "Patatas fritas", x: 82, y: 70 },
-      ],
-    },
   },
   {
     id: "tacu-tacu-con-saltado-de-pollo",
@@ -799,16 +661,6 @@ export const dishes: Dish[] = [
     description:
       "Cremosa mezcla de frejoles y arroz cocido, dorado y roleado en sartén, con saltado de pollo.",
     allergens: ["soja*"],
-    photo: {
-      src: "/images/platos/saltado-de-pollo.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Saltado de pollo", x: 30, y: 35 },
-        { label: "Tomate", x: 20, y: 52 },
-        { label: "Cebolla", x: 40, y: 60 },
-      ],
-    },
   },
   {
     id: "tacu-tacu-con-seco-de-ternera-a-la-nortena",
@@ -879,18 +731,6 @@ export const dishes: Dish[] = [
     description:
       "Cremosa mezcla de frejoles y arroz cocido, dorado y roleado en sartén, con bistec a lo pobre.",
     allergens: ["huevo"],
-    photo: {
-      src: "/images/platos/tacu-tacu-con-bistec-a-lo-pobre.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Plátano frito", x: 18, y: 20 },
-        { label: "Huevo frito", x: 75, y: 15 },
-        { label: "Tacu tacu", x: 85, y: 30 },
-        { label: "Bistec saltado", x: 40, y: 55 },
-        { label: "Patatas fritas", x: 85, y: 75 },
-      ],
-    },
   },
   {
     id: "lomo-saltado",
@@ -924,17 +764,6 @@ export const dishes: Dish[] = [
     description:
       "Tiernas tiras de pollo salteadas con cebolla, tomate, ají y salsa de soja, acompañadas de patatas fritas y arroz.",
     allergens: ["soja*"],
-    photo: {
-      src: "/images/platos/saltado-de-pollo.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Pollo", x: 30, y: 35 },
-        { label: "Tomate", x: 20, y: 52 },
-        { label: "Cebolla", x: 40, y: 60 },
-        { label: "Arroz", x: 85, y: 30 },
-      ],
-    },
   },
   {
     id: "tallarin-saltado-de-pollo",
@@ -944,16 +773,6 @@ export const dishes: Dish[] = [
     description:
       "Tallarines salteados al wok con pollo, cebolla, tomate y salsa oriental.",
     allergens: ["gluten", "soja"],
-    photo: {
-      src: "/images/platos/tallarin-saltado-de-pollo.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Pollo", x: 45, y: 30 },
-        { label: "Tallarines", x: 40, y: 60 },
-        { label: "Ají", x: 70, y: 72 },
-      ],
-    },
   },
   {
     id: "tallarin-saltado-de-ternera",
@@ -963,17 +782,6 @@ export const dishes: Dish[] = [
     description:
       "Tallarines salteados al wok con ternera, cebolla, tomate y salsa oriental.",
     allergens: ["gluten", "soja"],
-    photo: {
-      src: "/images/platos/tallarin-saltado-de-ternera.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Ternera", x: 40, y: 35 },
-        { label: "Cebolla", x: 55, y: 60 },
-        { label: "Tomate", x: 65, y: 25 },
-        { label: "Tallarines", x: 85, y: 55 },
-      ],
-    },
   },
   {
     id: "pollo-a-la-plancha",
@@ -983,15 +791,6 @@ export const dishes: Dish[] = [
     description:
       "Pechuga de pollo a la plancha, acompañada de arroz, ensalada y patatas cocidas o fritas.",
     allergens: [],
-    photo: {
-      src: "/images/platos/pollo-a-la-plancha.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Pollo", x: 60, y: 60 },
-        { label: "Patatas", x: 15, y: 40 },
-      ],
-    },
   },
   {
     id: "bistec-a-la-plancha",
@@ -1001,15 +800,6 @@ export const dishes: Dish[] = [
     description:
       "Jugoso bistec de ternera a la plancha acompañado de arroz, patatas y ensalada.",
     allergens: [],
-    photo: {
-      src: "/images/platos/bistec-a-la-plancha.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Bistec de ternera", x: 35, y: 45 },
-        { label: "Patatas", x: 75, y: 35 },
-      ],
-    },
   },
   {
     id: "lomo-chaufa",
@@ -1019,17 +809,6 @@ export const dishes: Dish[] = [
     description:
       "Clásico lomo saltado acompañado con arroz chaufa a base de huevo, cebolla china y salsa oriental.",
     allergens: ["soja", "huevo"],
-    photo: {
-      src: "/images/platos/lomo-chaufa.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Arroz", x: 48, y: 20 },
-        { label: "Tomate", x: 35, y: 47 },
-        { label: "Lomo", x: 40, y: 62 },
-        { label: "Cebolla", x: 75, y: 57 },
-      ],
-    },
   },
   {
     id: "bistec-a-lo-pobre",
@@ -1039,17 +818,6 @@ export const dishes: Dish[] = [
     description:
       "Bistec al grill acompañado de arroz, patatas, huevo frito y plátano frito.",
     allergens: ["huevo"],
-    photo: {
-      src: "/images/platos/bistec-a-lo-pobre.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Huevo frito", x: 35, y: 50 },
-        { label: "Plátano frito", x: 65, y: 35 },
-        { label: "Bistec", x: 88, y: 45 },
-        { label: "Arroz", x: 63, y: 80 },
-      ],
-    },
   },
   {
     id: "lomo-a-lo-pobre",
@@ -1064,9 +832,10 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Huevo frito", x: 55, y: 47 },
-        { label: "Lomo", x: 10, y: 80 },
-        { label: "Patatas fritas", x: 55, y: 80 },
+        { label: "Huevo frito", x: 54, y: 18 },
+        { label: "Lomo saltado", x: 42, y: 33 },
+        { label: "Plátano frito", x: 15, y: 56 },
+        { label: "Arroz", x: 45, y: 72 },
       ],
     },
   },
@@ -1078,16 +847,6 @@ export const dishes: Dish[] = [
     description:
       "Pechuga de pollo acompañada de arroz, patatas, huevo frito y plátano frito.",
     allergens: ["huevo"],
-    photo: {
-      src: "/images/platos/pechuga-a-lo-pobre.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Pechuga", x: 60, y: 40 },
-        { label: "Huevo frito", x: 8, y: 55 },
-        { label: "Arroz", x: 40, y: 70 },
-      ],
-    },
   },
   {
     id: "fetuccini-a-la-huancaina-con-lomo-saltado",
@@ -1140,9 +899,10 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Arroz blanco", x: 15, y: 45 },
-        { label: "Calamar", x: 50, y: 50 },
-        { label: "Salsa de mariscos", x: 65, y: 25 },
+        { label: "Arroz blanco", x: 25, y: 20 },
+        { label: "Pescado", x: 22, y: 55 },
+        { label: "Calamar", x: 45, y: 64 },
+        { label: "Mejillón", x: 76, y: 73 },
       ],
     },
   },
@@ -1219,8 +979,10 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Panceta crujiente", x: 55, y: 35 },
-        { label: "Camote", x: 55, y: 72 },
+        { label: "Panceta crujiente", x: 33, y: 30 },
+        { label: "Mote", x: 72, y: 48 },
+        { label: "Camote", x: 58, y: 67 },
+        { label: "Salsa criolla", x: 50, y: 18 },
       ],
     },
   },
@@ -1252,15 +1014,6 @@ export const dishes: Dish[] = [
     description:
       "Nuestro clásico pollo marinado y cocinado a la brasa, acompañado de patatas y ensalada.",
     allergens: [],
-    photo: {
-      src: "/images/platos/pollo-a-la-brasa-1-pollo.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Pollo a la brasa", x: 50, y: 60 },
-        { label: "Ensalada", x: 35, y: 25 },
-      ],
-    },
   },
   {
     id: "pollo-a-la-brasa-medio-pollo",
@@ -1269,16 +1022,6 @@ export const dishes: Dish[] = [
     price: 16,
     description: "Medio pollo a la brasa, acompañado de patatas y ensalada.",
     allergens: [],
-    photo: {
-      src: "/images/platos/pollo-a-la-brasa-medio-pollo.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Patatas fritas", x: 50, y: 25 },
-        { label: "Pollo a la brasa", x: 40, y: 65 },
-        { label: "Tomate", x: 60, y: 88 },
-      ],
-    },
   },
   {
     id: "pollo-a-la-brasa-cuarto-pollo",
@@ -1288,15 +1031,6 @@ export const dishes: Dish[] = [
     description:
       "Cuarto de pollo a la brasa, acompañado de patatas y ensalada.",
     allergens: [],
-    photo: {
-      src: "/images/platos/pollo-a-la-brasa-cuarto-pollo.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Pollo a la brasa", x: 25, y: 45 },
-        { label: "Patatas fritas", x: 75, y: 50 },
-      ],
-    },
   },
   {
     id: "mostrito-cuarto-brasa",
@@ -1306,17 +1040,6 @@ export const dishes: Dish[] = [
     description:
       "Cuarto de pollo a la brasa acompañado de arroz chaufa y patatas fritas.",
     allergens: ["soja", "huevo*"],
-    photo: {
-      src: "/images/platos/mostrito-cuarto-brasa.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Ensalada", x: 55, y: 25 },
-        { label: "Pollo a la brasa", x: 25, y: 45 },
-        { label: "Arroz", x: 80, y: 50 },
-        { label: "Patatas fritas", x: 35, y: 72 },
-      ],
-    },
   },
   {
     id: "mostro-1-pollo-a-la-brasa",
@@ -1326,15 +1049,6 @@ export const dishes: Dish[] = [
     description:
       "Pollo entero a la brasa acompañado de arroz chaufa y patatas fritas.",
     allergens: ["soja", "huevo*"],
-    photo: {
-      src: "/images/platos/mostro-1-pollo-a-la-brasa.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Patatas fritas", x: 60, y: 35 },
-        { label: "Pollo a la brasa", x: 20, y: 50 },
-      ],
-    },
   },
   {
     id: "pollo-broaster-cuarto",
@@ -1344,15 +1058,6 @@ export const dishes: Dish[] = [
     description:
       "Pollo crujiente y dorado al estilo broaster, acompañado de patatas.",
     allergens: ["gluten", "huevo*"],
-    photo: {
-      src: "/images/platos/pollo-broaster-cuarto.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Pollo broaster", x: 60, y: 30 },
-        { label: "Patatas fritas", x: 12, y: 50 },
-      ],
-    },
   },
   {
     id: "mostrito-cuarto-broaster",
@@ -1362,15 +1067,6 @@ export const dishes: Dish[] = [
     description:
       "Cuarto de pollo broaster acompañado de arroz chaufa y patatas fritas.",
     allergens: ["gluten", "huevo", "soja*"],
-    photo: {
-      src: "/images/platos/mostrito-cuarto-broaster.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Pollo broaster", x: 20, y: 25 },
-        { label: "Patatas fritas", x: 45, y: 55 },
-      ],
-    },
   },
   {
     id: "chaufa-con-alitas",
@@ -1379,11 +1075,6 @@ export const dishes: Dish[] = [
     price: 14.5,
     description: "Arroz chaufa acompañado de crujientes alitas de pollo.",
     allergens: ["soja", "huevo*"],
-    photo: {
-      src: "/images/platos/chaufa-con-alitas.webp",
-      width: 1200,
-      height: 1500,
-    },
   },
   {
     id: "salchipapa-clasica",
@@ -1393,15 +1084,6 @@ export const dishes: Dish[] = [
     description:
       "Clásica combinación de patatas fritas y salchicha, acompañada de nuestras salsas.",
     allergens: ["mostaza", "leche", "huevo*"],
-    photo: {
-      src: "/images/platos/salchipapa-clasica.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Salchicha", x: 75, y: 45 },
-        { label: "Patatas fritas", x: 40, y: 60 },
-      ],
-    },
   },
   {
     id: "alitas-acevichadas",
@@ -1411,15 +1093,6 @@ export const dishes: Dish[] = [
     description:
       "Crujientes alitas de pollo bañadas en salsa acevichada, acompañadas de patatas fritas.",
     allergens: ["pescado", "leche", "huevo*"],
-    photo: {
-      src: "/images/platos/alitas-acevichadas.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Alitas de pollo", x: 60, y: 35 },
-        { label: "Salsa acevichada", x: 45, y: 72 },
-      ],
-    },
   },
   {
     id: "hamburguesa-royal-de-carne",
@@ -1434,11 +1107,10 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Queso", x: 60, y: 47 },
-        { label: "Carne", x: 50, y: 58 },
-        { label: "Huevo", x: 12, y: 63 },
-        { label: "Lechuga", x: 85, y: 68 },
-        { label: "Tomate", x: 35, y: 76 },
+        { label: "Pan de la casa", x: 47, y: 29 },
+        { label: "Patatas fritas", x: 25, y: 47 },
+        { label: "Queso", x: 42, y: 62 },
+        { label: "Tomate", x: 82, y: 47 },
       ],
     },
   },
@@ -1450,11 +1122,6 @@ export const dishes: Dish[] = [
     description:
       "Suaves trozos de pollo deshilachado, lechuga, tomate, patatas fritas y salsas, servido en pan de hamburguesa especial.",
     allergens: ["gluten", "huevo", "leche", "mostaza*"],
-    photo: {
-      src: "/images/platos/hamburguesa-de-pollo.webp",
-      width: 1200,
-      height: 1500,
-    },
   },
   {
     id: "hamburguesa-mixta",
@@ -1464,16 +1131,6 @@ export const dishes: Dish[] = [
     description:
       "Hamburguesa de carne y pollo deshilachado, lechuga, tomate, huevo, queso, patatas fritas y salsas, todo servido dentro de un pan de hamburguesa especial de la casa.",
     allergens: ["gluten", "huevo", "leche", "mostaza*"],
-    photo: {
-      src: "/images/platos/hamburguesa-mixta.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Patatas fritas", x: 12, y: 40 },
-        { label: "Huevo", x: 30, y: 64 },
-        { label: "Tomate", x: 50, y: 60 },
-      ],
-    },
   },
   {
     id: "hamburguesa-de-la-casa",
@@ -1483,17 +1140,6 @@ export const dishes: Dish[] = [
     description:
       "Doble hamburguesa de carne, lechuga, tomate, huevo, doble queso, patatas fritas y salsas, todo servido dentro de un pan de hamburguesa especial de la casa.",
     allergens: ["gluten", "huevo", "leche", "mostaza*"],
-    photo: {
-      src: "/images/platos/hamburguesa-de-la-casa.webp",
-      width: 1200,
-      height: 1500,
-      hotspots: [
-        { label: "Pan de la casa", x: 60, y: 15 },
-        { label: "Carne", x: 60, y: 40 },
-        { label: "Lechuga", x: 55, y: 55 },
-        { label: "Patatas fritas", x: 20, y: 55 },
-      ],
-    },
   },
   {
     id: "porcion-de-arroz-blanco",
