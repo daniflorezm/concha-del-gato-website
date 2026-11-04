@@ -91,7 +91,7 @@ export const dishes: Dish[] = [
     id: "leche-de-tigre",
     name: "Leche de Tigre",
     category: "entrantes",
-    price: 10.5,
+    price: 12.5,
     description:
       "Concentrado de leche de tigre peruana, cítricos, ají, cilantro, pescado y un toque de base cevichera de la casa.",
     allergens: ["pescado", "crustáceos*"],
@@ -1127,18 +1127,9 @@ export const dishes: Dish[] = [
     id: "hamburguesa-mixta",
     name: "Hamburguesa Mixta",
     category: "fast-food",
-    price: 15,
+    price: 16,
     description:
       "Hamburguesa de carne y pollo deshilachado, lechuga, tomate, huevo, queso, patatas fritas y salsas, todo servido dentro de un pan de hamburguesa especial de la casa.",
-    allergens: ["gluten", "huevo", "leche", "mostaza*"],
-  },
-  {
-    id: "hamburguesa-de-la-casa",
-    name: "Hamburguesa de la Casa",
-    category: "fast-food",
-    price: 16.5,
-    description:
-      "Doble hamburguesa de carne, lechuga, tomate, huevo, doble queso, patatas fritas y salsas, todo servido dentro de un pan de hamburguesa especial de la casa.",
     allergens: ["gluten", "huevo", "leche", "mostaza*"],
   },
   {
@@ -1146,13 +1137,6 @@ export const dishes: Dish[] = [
     name: "Porción de Arroz Blanco",
     category: "guarniciones",
     price: 3,
-    description: "",
-  },
-  {
-    id: "porcion-de-yuca",
-    name: "Porción de Yuca",
-    category: "guarniciones",
-    price: 4,
     description: "",
   },
   {
@@ -1180,7 +1164,7 @@ export const dishes: Dish[] = [
     id: "jarra-de-chicha-morada",
     name: "Jarra de Chicha Morada",
     category: "bebidas",
-    price: 10.5,
+    price: 11.5,
     description: "",
   },
   {
@@ -1194,7 +1178,7 @@ export const dishes: Dish[] = [
     id: "jarra-de-maracuya",
     name: "Jarra de Maracuyá",
     category: "bebidas",
-    price: 10.5,
+    price: 10,
     description: "",
   },
   {
