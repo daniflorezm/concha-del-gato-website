@@ -328,6 +328,18 @@ export const dishes: Dish[] = [
     description:
       "Crujientes trozos de pescado dorados acompañados de yuca frita, salsa criolla y salsa tártara.",
     allergens: ["pescado", "gluten*"],
+    photo: {
+      src: "/images/platos/chicharron-de-pescado.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Pescado frito", x: 62, y: 52 },
+        { label: "Chifles", x: 42, y: 57 },
+        { label: "Salsa criolla", x: 30, y: 32 },
+        { label: "Camote frito", x: 52, y: 22 },
+        { label: "Cancha", x: 28, y: 65 },
+      ],
+    },
   },
   {
     id: "chicharron-de-pota",
@@ -346,6 +358,18 @@ export const dishes: Dish[] = [
     description:
       "Crocantes trozos de pescado, mariscos y conchas de abanico, acompañada de yuca frita y coronado con salsa criolla y salsa tártara.",
     allergens: ["pescado", "crustáceos", "moluscos", "gluten", "huevo"],
+    photo: {
+      src: "/images/platos/jalea-mixta.webp",
+      width: 1200,
+      height: 1500,
+      hotspots: [
+        { label: "Concha de abanico", x: 10, y: 44 },
+        { label: "Salsa criolla", x: 40, y: 36 },
+        { label: "Chifles", x: 57, y: 31 },
+        { label: "Mariscos fritos", x: 36, y: 50 },
+        { label: "Cancha", x: 15, y: 60 },
+      ],
+    },
   },
   {
     id: "jalea-del-gato",
@@ -502,6 +526,11 @@ export const dishes: Dish[] = [
       src: "/images/platos/caldo-de-mote.webp",
       width: 1200,
       height: 1500,
+      hotspots: [
+        { label: "Hierbas aromáticas", x: 50, y: 46 },
+        { label: "Carne y pata de res", x: 50, y: 60 },
+        { label: "Mote", x: 66, y: 57 },
+      ],
     },
   },
   {
@@ -880,9 +909,10 @@ export const dishes: Dish[] = [
       width: 1200,
       height: 1500,
       hotspots: [
-        { label: "Langostinos", x: 52, y: 53 },
-        { label: "Fetuccini", x: 33, y: 68 },
-        { label: "Salsa de la casa", x: 68, y: 66 },
+        { label: "Langostinos", x: 42, y: 40 },
+        { label: "Fetuccini", x: 22, y: 62 },
+        { label: "Guisantes", x: 72, y: 63 },
+        { label: "Queso parmesano", x: 55, y: 48 },
       ],
     },
   },
